@@ -1,0 +1,223 @@
+Index: Smarty/templates/CreateView.tpl
+===================================================================
+--- Smarty/templates/CreateView.tpl	(revisión: 4486)
++++ Smarty/templates/CreateView.tpl	(copia de trabajo)
+@@ -291,7 +291,7 @@
+ </table>
+ </form>
+ 
+-{if ($MODULE eq 'Emails' || $MODULE eq 'Documents') and ($USE_RTE eq 'true')}
++{if ($MODULE eq 'Emails' || $MODULE eq 'Documents' || $MODULE eq 'Timecontrol') and ($USE_RTE eq 'true')}
+ <script type="text/javascript" src="include/ckeditor/ckeditor.js"></script>
+ <script type="text/javascript" defer="1">
+ 	var textAreaName = null;
+Index: Smarty/templates/EditViewUI.tpl
+===================================================================
+--- Smarty/templates/EditViewUI.tpl	(revisión: 4486)
++++ Smarty/templates/EditViewUI.tpl	(copia de trabajo)
+@@ -484,7 +484,7 @@
+ 				{if $uitype eq 6 && $QCMODULE eq 'Event'}
+ 					<input name="dateFormat" type="hidden" value="{$dateFormat}">
+ 				{/if}
+-				{if $uitype eq 23 && $QCMODULE eq 'Event'}
++				{if $uitype eq 23 && ($QCMODULE eq 'Event' || $MODULE eq 'Timecontrol')}
+ 					<input name="time_end" style="border:1px solid #bababa;" size="5" maxlength="5" type="text" value="{$time_val}">
+ 				{/if}
+ 				
+Index: modules/Reports/ReportUtils.php
+===================================================================
+--- modules/Reports/ReportUtils.php	(revisión: 4486)
++++ modules/Reports/ReportUtils.php	(copia de trabajo)
+@@ -105,7 +105,7 @@
+ 		$date = new DateTimeField($value);
+ 		$fieldvalue = $date->getDisplayDateTimeValue();
+ 	} elseif( $fieldType == 'time' && !empty($value) && $field->getFieldName() 
+-			!= 'duration_hours') {
++			!= 'duration_hours' && $field->getFieldName() != 'totaltime') {
+ 		$date = new DateTimeField($value);
+ 		$fieldvalue = $date->getDisplayTime();
+ 	} elseif( $fieldType == "picklist" && !empty($value) ) {
+Index: modules/Reports/ReportRun.php
+===================================================================
+--- modules/Reports/ReportRun.php	(revisión: 4486)
++++ modules/Reports/ReportRun.php	(copia de trabajo)
+@@ -2354,6 +2354,7 @@
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey]);
+ 							else 
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey], null, true);
++							if (substr($arraykey, 0, 21)=='Timecontrol_TotalTime') $conv_value=$keyhdr[$arraykey];
+ 							$coltotalhtml .= '<td class="rptTotal">'.$conv_value.'</td>';
+ 						}else
+ 						{
+@@ -2367,6 +2368,7 @@
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey]);
+ 							else
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey], null, true);
++							if (substr($arraykey, 0, 21)=='Timecontrol_TotalTime') $conv_value=$keyhdr[$arraykey];
+ 							$coltotalhtml .= '<td class="rptTotal">'.$conv_value.'</td>';
+ 						}else
+ 						{
+@@ -2380,6 +2382,7 @@
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey]);
+ 							else
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey], null, true);
++							if (substr($arraykey, 0, 21)=='Timecontrol_TotalTime') $conv_value=$keyhdr[$arraykey];
+ 							$coltotalhtml .= '<td class="rptTotal">'.$conv_value.'</td>';
+ 						}else
+ 						{
+@@ -2393,6 +2396,7 @@
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey]);
+ 							else
+ 								$conv_value = CurrencyField::convertToUserFormat ($keyhdr[$arraykey], null, true);
++							if (substr($arraykey, 0, 21)=='Timecontrol_TotalTime') $conv_value=$keyhdr[$arraykey];
+ 							$coltotalhtml .= '<td class="rptTotal">'.$conv_value.'</td>';
+ 						}else
+ 						{
+@@ -2766,20 +2770,32 @@
+ 					}
+ 					if($fieldlist[4] == 2)
+ 					{
++                        if ($fieldlist[2]=='totaltime')
++                          $stdfilterlist[$fieldcolname] = "sec_to_time(sum(time_to_sec(".$field."))) '".$field_columnalias."'"; 
++                        else
+ 						$stdfilterlist[$fieldcolname] = "sum($field) '".$field_columnalias."'";
+ 					}
+ 					if($fieldlist[4] == 3)
+ 					{
+ 						//Fixed average calculation issue due to NULL values ie., when we use avg() function, NULL values will be ignored.to avoid this we use (sum/count) to find average.
+ 						//$stdfilterlist[$fieldcolname] = "avg(".$fieldlist[1].".".$fieldlist[2].") '".$fieldlist[3]."'";
++                        if ($fieldlist[2]=='totaltime')
++                          $stdfilterlist[$fieldcolname] = "sec_to_time(sum(time_to_sec(".$field."))/count(*)) '".$field_columnalias."'"; 
++                        else
+ 						$stdfilterlist[$fieldcolname] = "(sum($field)/count(*)) '".$field_columnalias."'";
+ 					}
+ 					if($fieldlist[4] == 4)
+ 					{
++                        if ($fieldlist[2]=='totaltime')
++                          $stdfilterlist[$fieldcolname] = "sec_to_time(min(time_to_sec(".$field."))) '".$field_columnalias."'"; 
++                        else
+ 						$stdfilterlist[$fieldcolname] = "min($field) '".$field_columnalias."'";
+ 					}
+ 					if($fieldlist[4] == 5)
+ 					{
++					    if ($fieldlist[2]=='totaltime')
++                          $stdfilterlist[$fieldcolname] = "sec_to_time(max(time_to_sec(".$field."))) '".$field_columnalias."'"; 
++                        else
+ 						$stdfilterlist[$fieldcolname] = "max($field) '".$field_columnalias."'";
+ 					}
+ 				}
+Index: modules/Reports/Reports.php
+===================================================================
+--- modules/Reports/Reports.php	(revisión: 4486)
++++ modules/Reports/Reports.php	(copia de trabajo)
+@@ -52,6 +52,7 @@
+ 			 'PurchaseOrder'=>Array('Contacts'),
+ 			 'Invoice'=>Array('Accounts'),
+ 			 'Campaigns'=>Array('Products'),
++			 'Timecontrol'=>Array('Leads','Accounts','Contacts','Vendors','Campaigns','Potentials','Quotes','PurchaseOrder','SalesOrder','Invoice','HelpDesk', 'Project', 'ProjectMilestone', 'ProjectTask', 'Assets', 'ServiceContracts','Products','Services'),
+ 			);
+ 
+ $related_modules =Array();
+@@ -1533,7 +1534,7 @@
+ 		{
+ 			$typeofdata = explode("~",$columntototalrow["typeofdata"]);
+ 
+-			if($typeofdata[0] == "N" || $typeofdata[0] == "I")
++			if($typeofdata[0] == "N" || $typeofdata[0] == "I" || $typeofdata[0] == "T")
+ 			{
+ 				$options = Array();
+ 				if(isset($this->columnssummary))
+Index: include/js/general.js
+===================================================================
+--- include/js/general.js	(revisión: 4486)
++++ include/js/general.js	(copia de trabajo)
+@@ -1008,7 +1008,7 @@
+ 						if(typeof(type[3])=="undefined") var currdatechk="OTH"
+ 						else var currdatechk=type[3]
+ 
+-						if (!dateTimeValidate(fieldname[i],type[2],fieldlabel[i],currdatechk))
++						if ((type[1]!='O' || getObj(type[2]).value!='') && !dateTimeValidate(fieldname[i],type[2],fieldlabel[i],currdatechk))
+ 							return false
+ 						if (type[4]) {
+ 							if (!dateTimeComparison(fieldname[i],type[2],fieldlabel[i],type[5],type[6],type[4]))
+Index: include/js/vtlib.js
+===================================================================
+--- include/js/vtlib.js	(revisión: 4486)
++++ include/js/vtlib.js	(copia de trabajo)
+@@ -172,6 +172,8 @@
+         onComplete: function(response) {
+         	if(target) {
+         		target.innerHTML = response.responseText;
++        		if(typeof ParseAjaxResponse == 'function') 
++        		ParseAjaxResponse(response.responseText);
+         		if(indicator) {
+ 					indicator.hide();
+ 				}
+Index: include/utils/EditViewUtils.php
+===================================================================
+--- include/utils/EditViewUtils.php	(revisión: 4486)
++++ include/utils/EditViewUtils.php	(copia de trabajo)
+@@ -98,7 +98,7 @@
+ 			if ($fieldname != 'birthday' && $generatedtype != 2 && getTabid($module_name) != 14)
+ 				$disp_value = getNewDisplayDate();
+ 
+-			if(($module_name == 'Events' || $module_name == 'Calendar') && $uitype == 6) {
++			if(($module_name == 'Events' || $module_name == 'Calendar' || $module_name == 'Timecontrol') && $uitype == 6) {
+ 				$curr_time = date('H:i', strtotime('+5 minutes'));
+ 			}
+ 			if(($module_name == 'Events' || $module_name == 'Calendar') && $uitype == 23) {
+@@ -116,19 +116,19 @@
+ 		} else {
+ 			
+ 			if($uitype == 6) {
+-				if ($col_fields['time_start'] != '' && ($module_name == 'Events' || $module_name 
++				if ($col_fields['time_start'] != '' && ($module_name == 'Events' || $module_name=='Timecontrol' || $module_name 
+ 						== 'Calendar')) {
+ 					$curr_time = $col_fields['time_start'];
+ 					$value = $value . ' ' . $curr_time;
+-				} else {
++				} elseif ($module_name!='Timecontrol') {
+ 				$curr_time = date('H:i', strtotime('+5 minutes'));
+ 				}
+ 			}
+-			if(($module_name == 'Events' || $module_name == 'Calendar') && $uitype == 23) {
++			if(($module_name == 'Events' || $module_name == 'Calendar' || $module_name=='Timecontrol') && $uitype == 23) {
+ 				if ($col_fields['time_end'] != '') {
+ 					$curr_time = $col_fields['time_end'];
+ 					$value = $value . ' ' . $curr_time;
+-				} else {
++				} elseif ($module_name!='Timecontrol') {
+ 					$curr_time = date('H:i', strtotime('+10 minutes'));
+ 				}
+ 			}
+@@ -146,7 +146,7 @@
+ 		$fieldvalue[] = array($disp_value => $curr_time) ;
+ 		if($uitype == 5 || $uitype == 23)
+ 		{
+-			if($module_name == 'Events' && $uitype == 23)
++			if(($module_name == 'Events' || $module_name=='Timecontrol') && $uitype == 23)
+ 			{
+ 				$fieldvalue[] = array($date_format=>$current_user->date_format.' '.$app_strings['YEAR_MONTH_DATE']);
+ 			}
+Index: include/utils/DetailViewUtils.php
+===================================================================
+--- include/utils/DetailViewUtils.php	(revisión: 4486)
++++ include/utils/DetailViewUtils.php	(copia de trabajo)
+@@ -285,7 +285,7 @@
+                 $label_fld[] = '';
+         }
+ 	} elseif ($uitype == 19) {
+-		if ($fieldname == 'notecontent')
++		if ($fieldname == 'notecontent' or $module=='Timecontrol')
+ 			$col_fields[$fieldname] = decode_html($col_fields[$fieldname]);
+ 		else
+ 			$col_fields[$fieldname] = str_replace("&lt;br /&gt;", "<br>", $col_fields[$fieldname]);
+@@ -920,7 +920,7 @@
+ 	} elseif ($uitype == 5 || $uitype == 23 || $uitype == 70) {
+ 		$label_fld[] = getTranslatedString($fieldlabel, $module);
+ 		$dateValue = $col_fields[$fieldname];
+-		if ($col_fields['time_end'] != '' && ($tabid == 9 || $tabid == 16) && $uitype == 23) {
++		if ($col_fields['time_end'] != '' && ($tabid == 9 || $tabid == 16 || $module=='Timecontrol') && $uitype == 23) {
+ 			$end_time = $col_fields['time_end'];
+ 		}
+ 		if ($dateValue == '0000-00-00' || empty($dateValue)) {

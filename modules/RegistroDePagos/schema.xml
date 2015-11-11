@@ -1,0 +1,36 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_registrodepagos</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_registrodepagos` (
+  `registrodepagosid` int(11) NOT NULL DEFAULT '0',
+    `registrodeventasid` INT(19) DEFAULT NULL,
+    `totalpagado` VARCHAR(128) DEFAULT NULL,
+    `numerotarjeta` VARCHAR(128) DEFAULT NULL,
+    `fechavcto` DATE DEFAULT NULL,
+    `pendientepago` VARCHAR(128) DEFAULT NULL,
+    `fechapago` DATE DEFAULT NULL,
+    `titularcedula` VARCHAR(128) DEFAULT NULL,
+    `paymentmethod` VARCHAR(128) DEFAULT NULL,
+    `totalventa` VARCHAR(128) DEFAULT NULL,
+    `referencia` VARCHAR(128) DEFAULT NULL,
+    `titularnombre` VARCHAR(128) DEFAULT NULL,
+    `currency` VARCHAR(128) DEFAULT NULL,
+    `amount` DECIMAL(25,8) DEFAULT NULL,
+    `bancoemisor` VARCHAR(128) DEFAULT NULL,
+    `bancoreceptor` VARCHAR(128) DEFAULT NULL,
+    `voucher` VARCHAR(256) DEFAULT NULL,
+    `observacion` VARCHAR(200) DEFAULT NULL,
+    PRIMARY KEY (`registrodepagosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_registrodepagoscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_registrodepagoscf` (
+  `registrodepagosid` int(11) NOT NULL,
+  PRIMARY KEY (`registrodepagosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

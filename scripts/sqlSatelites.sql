@@ -1,0 +1,22 @@
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=2503;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=1383;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7375;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=6912;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7374;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7373;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7778;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7380;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7943;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7394;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7376;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7378;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7779;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7379;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7372;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7377;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7370;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7395;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7731;
+UPDATE vtiger_contactdetails SET isSatelite=1 WHERE contactid=7047;
+
+select contactid, firstname, lastname,email from vtiger_contactdetails where lastname like "%%";

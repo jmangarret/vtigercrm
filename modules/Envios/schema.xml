@@ -1,0 +1,28 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_envios</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_envios` (
+  `enviosid` int(11) NOT NULL DEFAULT '0',
+    `registrodeventasid` INT(19) DEFAULT NULL,
+    `date` DATE DEFAULT NULL,
+    `empresadeenvio` VARCHAR(128) DEFAULT NULL,
+    `numerodeguia` VARCHAR(128) DEFAULT NULL,
+    `direcciondeenvio` VARCHAR(512) DEFAULT NULL,
+    `personacontacto` VARCHAR(128) DEFAULT NULL,
+    `telfcontacto` VARCHAR(128) DEFAULT NULL,
+    `observacion` TEXT DEFAULT NULL,
+    `status` VARCHAR(128) DEFAULT NULL,
+    PRIMARY KEY (`enviosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_envioscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_envioscf` (
+  `enviosid` int(11) NOT NULL,
+  PRIMARY KEY (`enviosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

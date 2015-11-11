@@ -1,0 +1,106 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_accounting</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_accounting` (
+                          `accountingid` int(11) default NULL,
+                          `accounting_id` varchar(100) default NULL,
+                          `paymentref` varchar(255) default NULL,
+                          `accountingtype` varchar(100) default NULL,
+                          `accountingrelated1` varchar(100) default NULL,
+                          `accountingrelated2` varchar(100) default NULL,
+                          `accountingstate` varchar(100) default NULL,
+                          `accountingcategory` varchar(100) default NULL,
+                          `accountingamount` DOUBLE default NULL,
+                          `accountingcurrency` varchar(100) default NULL,
+                          `accountingpaidamount` DOUBLE default NULL,
+                          `accountingpaidoustanding` DOUBLE default NULL,
+                          `accountingduedate` DATE default NULL,
+                          `accountingpaymentdate` DATE default NULL,
+                          `accountingpaymentmethod` varchar(255) default NULL,
+                          `accountingamountpartial` DOUBLE default NULL,
+                          `paymentrefpartial` varchar(255) default NULL,
+                          `paymentpaidpartial` varchar(255) default NULL,
+						  `paymentvatpartial` DOUBLE default NULL,
+                          `description` varchar(255) default NULL
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accountingcf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_accountingcf` (
+                          `accountingid` int(11) NOT NULL,
+                          PRIMARY KEY  (`accountingid`)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accounting_payments</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_accounting_payments` (
+                          `idpayment` int(11) NOT NULL AUTO_INCREMENT,
+                          `idtransaction` int(11) default NULL,
+                          `amount` double default NULL,
+                          `paymentdate` date default NULL,
+                          `paid` int(1) default NULL,
+                          `expired` int(1) default NULL,
+                          `paymentduedate` date default NULL,
+                          `associnv` varchar(45) NOT NULL,
+                          `assoc_display` varchar(45) NOT NULL,
+                          `assoc_mod` varchar(45) NOT NULL,
+                          `ref` varchar(100) NOT NULL,
+                          `paymentmethod` varchar(45) NOT NULL,
+                          `tax` double NOT NULL,
+                          `nettotal` double default NULL,
+                          `description` varchar(150) NOT NULL,
+                          PRIMARY KEY  (`idpayment`)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accountingconfig</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_accountingconfig` (
+                          `param` varchar(255) NOT NULL,
+                          `value` varchar(4096) NOT NULL,
+                          PRIMARY KEY  (`param`)
+                        ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accountingconfig</name>
+			<sql><![CDATA[INSERT INTO `vtiger_accountingconfig` (`param`,`value`) VALUES 
+                                 ('associnvoice','false'),
+                                 ('createpaymentwf','false'),
+                                 ('customlinks','true'),
+                                 ('decimals','2'),
+                                 ('fromuser',''),
+                                 ('invoicewf','false'),
+                                 ('invoicewfpaid',''),
+                                 ('invoicewfpending',''),
+                                 ('licensecode',''),
+                                 ('licenseok','false'),
+                                 ('paymentwf','false'),
+                                 ('paymentwfpaid','Paid'),
+                                 ('paymentwfpending','Credit Invoice'),
+                                 ('relmodules','false'),
+                                 ('wf_firstpaymentamount',''),
+                                 ('wf_firstpaymentdate',''),
+                                 ('wf_frecuency',''),
+                                 ('showvat','false'),
+                                 ('wf_nopayments',''),
+                                 ('defaultcurrency','')]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accountingtransmethods</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_accountingtransmethods` (
+                                `method` varchar(80) NOT NULL,
+                                PRIMARY KEY  (`method`)
+                                ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_accountingtransmethods</name>
+			<sql><![CDATA[INSERT INTO `vtiger_accountingtransmethods` (`method`) VALUES 
+                                 ('Cash'),
+                                 ('Credit card'),
+                                 ('Wire transfer'),
+                                 ('Paypal'),
+                                 ('Google Checkout')]]></sql>
+		</table>
+	</tables>
+</schema>

@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_boletos</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_boletos` (
+  `boletosid` int(11) NOT NULL DEFAULT '0',
+    `registrodeventasid` INT(19) DEFAULT NULL,
+    `boleto1` INT(11) DEFAULT NULL,
+    `boleto2` INT(11) DEFAULT NULL,
+    `localizador` VARCHAR(128) DEFAULT NULL,
+    `currency` VARCHAR(128) DEFAULT NULL,
+    `boleto3` INT(11) DEFAULT NULL,
+    `cf_1605` VARCHAR(128) DEFAULT NULL,
+    `boleto4` INT(11) DEFAULT NULL,
+    `boleto5` INT(11) DEFAULT NULL,
+    `tipopasajero` VARCHAR(128) DEFAULT NULL,
+    `boleto6` INT(11) DEFAULT NULL,
+    `cantidad` INT(11) DEFAULT NULL,
+    `boleto7` INT(11) DEFAULT NULL,
+    `registrodeventaid` INT(19) DEFAULT NULL,
+    `fee` DECIMAL(25,8) DEFAULT NULL,
+    `boleto8` INT(11) DEFAULT NULL,
+    `amount` DECIMAL(25,8) DEFAULT NULL,
+    `totalboletos` DECIMAL(25,8) DEFAULT NULL,
+    PRIMARY KEY (`boletosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_boletoscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_boletoscf` (
+  `boletosid` int(11) NOT NULL,
+  PRIMARY KEY (`boletosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

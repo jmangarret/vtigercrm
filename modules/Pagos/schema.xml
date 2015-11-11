@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_pagos</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_pagos` (
+  `pagosid` int(11) NOT NULL DEFAULT '0',
+    `accountingid` INT(19) DEFAULT NULL,
+    `ref` VARCHAR(128) DEFAULT NULL,
+    `paymentmethod` VARCHAR(128) DEFAULT NULL,
+    `amount` DECIMAL(25,8) DEFAULT NULL,
+    `tax` DECIMAL(25,3) DEFAULT NULL,
+    `paymentdate` DATE DEFAULT NULL,
+    `paymentduedate` DATE DEFAULT NULL,
+    `associnv` INT(19) DEFAULT NULL,
+    `paid` VARCHAR(5) DEFAULT NULL,
+    `pagosbancoemisor` VARCHAR(128) DEFAULT NULL,
+    `pagosbancoreceptor` VARCHAR(128) DEFAULT NULL,
+    PRIMARY KEY (`pagosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_pagoscf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_pagoscf` (
+  `pagosid` int(11) NOT NULL,
+  PRIMARY KEY (`pagosid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

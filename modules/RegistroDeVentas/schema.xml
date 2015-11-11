@@ -1,0 +1,43 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_registrodeventas</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_registrodeventas` (
+  `registrodeventasid` int(11) default NULL,
+  `registrodeventasname` varchar(100) default NULL,
+  `registrodeventastype` varchar(100) default NULL,
+  `fecha` varchar(100) default NULL,
+  `contacto` varchar(100) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_registrodeventascf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_registrodeventascf` (
+  `registrodeventasid` int(11) NOT NULL,
+  `cf_1605` varchar(255) default '',
+  `cf_1606` varchar(255) default '',
+  `cf_1607` varchar(255) default '',
+  `cf_1618` varchar(64) default '',
+  `cf_1619` varchar(64) default '',
+  `cf_1620` varchar(255) default '',
+  `cf_1621` varchar(255) default '',
+  `cf_1622` decimal(39,3) default NULL,
+  `cf_1623` varchar(64) default '',
+  `cf_1624` decimal(39,3) default NULL,
+  `cf_1625` varchar(3) default '0',
+  `cf_1626` varchar(255) default '',
+  `cf_1627` text,
+  PRIMARY KEY  (`registrodeventasid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_registrodeventasgrouprel</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_registrodeventasgrouprel` (
+  `registrodeventasid` int(11) NOT NULL,
+  `groupname` varchar(100) default NULL,
+  PRIMARY KEY  (`registrodeventasid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

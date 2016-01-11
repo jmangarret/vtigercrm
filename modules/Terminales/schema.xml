@@ -1,0 +1,26 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_terminales</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_terminales` (
+  `terminalesid` int(11) NOT NULL DEFAULT '0',
+    `firma` VARCHAR(128) DEFAULT NULL,
+    `gds` VARCHAR(128) DEFAULT NULL,
+    `atid` VARCHAR(128) DEFAULT NULL,
+    `cid` VARCHAR(128) DEFAULT NULL,
+    `emision` VARCHAR(5) DEFAULT NULL,
+    `oficina` VARCHAR(128) DEFAULT NULL,
+    `observacion` TEXT DEFAULT NULL,
+    PRIMARY KEY (`terminalesid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_terminalescf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_terminalescf` (
+  `terminalesid` int(11) NOT NULL,
+  PRIMARY KEY (`terminalesid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>

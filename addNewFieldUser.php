@@ -24,7 +24,7 @@ $fieldInstance->typeofdata = 'V~M'; //V=Varchar?, M=Mandatory, O=Optional
 $block->addField($fieldInstance);
 
 $fieldInstance2 = new Vtiger_Field();
-$fieldInstance2->name = 'agenteid'; //Usually matches column name
+$fieldInstance2->name = 'firma'; //Usually matches column name
 $fieldInstance2->table = 'vtiger_users';
 $fieldInstance2->column = 'agenteid'; //Must be lower case
 $fieldInstance2->label = 'Agente ID'; //Upper case preceeded by LBL_

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2016-01-07 16:04:02
+<?php /* Smarty version Smarty-3.1.7, created on 2016-01-11 11:26:46
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20298757745645ebdd7fd2a8-88301050%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'eb5f06dd0e4791cd874da304a615937aa7877d7b' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl',
-      1 => 1452197749,
+      1 => 1452526791,
       2 => 'file',
     ),
   ),
@@ -75,7 +75,7 @@ _listView_basicAction_<?php echo Vtiger_Util_Helper::replaceSpaceWithUnderScores
 "'<?php }?>><i class="icon-plus icon-white"></i>&nbsp;<strong><?php echo vtranslate($_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value->getLabel(),$_smarty_tpl->tpl_vars['MODULE']->value);?>
 </strong></button><!-- jmangarret dic2015 !--><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
 _listView_basicAction_Process" class="btn addButton"><i class="icon-plus icon-white"></i>&nbsp;<strong>Procesar</strong></button></a><!-- jmangarret dic2015 !--></span><?php } ?><script type="text/javascript">$(document).ready(function() {$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
-_listView_basicAction_Process').click(function() {var ids = new Array();$("input[class=listViewEntriesCheckBox]:checked").each(function() {ids.push($(this).val());});var ajax_data = {"userid" : $("#current_user_id").val(),"accion" : "procesarBoletos","id" : ids};jQuery.ajax({data: ajax_data,url: 'modules/Vtiger/ajaxProcesarList.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});});</script></span><span class="btn-toolbar span4"><span class="customFilterMainSpan btn-group"><!--Modified by jmangarret 16jun2015 --><?php if ($_smarty_tpl->tpl_vars['ROLEID']->value!='H9'){?><?php if (count($_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value)>0){?><select id="customFilter" style="width:350px;"><?php  $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->_loop = false;
+_listView_basicAction_Process').click(function() {var ids = new Array();$("input[class=listViewEntriesCheckBox]:checked").each(function() {ids.push($(this).val());});var ajax_data = {"userid" : $("#current_user_id").val(),"accion" : "procesarBoletos","id" : ids};jQuery.ajax({data: ajax_data,url: 'modules/Boletos/ajaxProcesarList.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});});</script></span><span class="btn-toolbar span4"><span class="customFilterMainSpan btn-group"><!--Modified by jmangarret 16jun2015 --><?php if ($_smarty_tpl->tpl_vars['ROLEID']->value!='H9'){?><?php if (count($_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value)>0){?><select id="customFilter" style="width:350px;"><?php  $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->_loop = false;
  $_smarty_tpl->tpl_vars['GROUP_LABEL'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->key => $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->value){

@@ -72,7 +72,7 @@
 								};		
 								jQuery.ajax({
 									data: ajax_data,
-									url: 'modules/Vtiger/ajaxProcesarList.php',
+									url: 'modules/Boletos/ajaxProcesarList.php',
 									type: 'get',
 									success: function(response){														
 										if (response!='')

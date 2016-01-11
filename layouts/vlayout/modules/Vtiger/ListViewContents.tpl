@@ -92,7 +92,7 @@
 				<script>				
 				$.ajax({
 				method: "GET",
-				url: "modules/Vtiger/ajaxProcesarList.php",
+				url: "modules/Boletos/ajaxProcesarList.php",
 				type : 'GET',
 				dataType:"html",
 				data: { accion: "buscarClientePorBoletoId", id: {$LISTVIEW_ENTRY->getId()} },
@@ -142,7 +142,7 @@
 					            if (confirm("Confirma ANULAR este boleto?")){					            	
 									$.ajax({
 									method: "GET",
-									url: "modules/Vtiger/ajaxProcesarList.php",
+									url: "modules/Boletos/ajaxProcesarList.php",
 									type : 'GET',
 									dataType:"html",
 									data: { accion: "anularBoleto", id: {$LISTVIEW_ENTRY->getId()} },

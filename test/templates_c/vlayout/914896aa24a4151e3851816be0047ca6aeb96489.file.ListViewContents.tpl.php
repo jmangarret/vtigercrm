@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2016-01-07 16:04:02
+<?php /* Smarty version Smarty-3.1.7, created on 2016-01-11 11:26:46
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewContents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20706116445645ebddad3607-06829913%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '914896aa24a4151e3851816be0047ca6aeb96489' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewContents.tpl',
-      1 => 1452198685,
+      1 => 1452526841,
       2 => 'file',
     ),
   ),
@@ -105,7 +105,7 @@ _listView_row_<?php echo $_smarty_tpl->getVariable('smarty')->value['foreach']['
 "><td  width="5%" class="<?php echo $_smarty_tpl->tpl_vars['WIDTHTYPE']->value;?>
 "><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 " class="listViewEntriesCheckBox"/></td><!-- jmangarret dic2015 - DATOS de Columna cliente asociada!--><td class="listViewEntryValue" id="valSatelite<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
-"><script>$.ajax({method: "GET",url: "modules/Vtiger/ajaxProcesarList.php",type : 'GET',dataType:"html",data: { accion: "buscarClientePorBoletoId", id: <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+"><script>$.ajax({method: "GET",url: "modules/Boletos/ajaxProcesarList.php",type : 'GET',dataType:"html",data: { accion: "buscarClientePorBoletoId", id: <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
  },success: function(response){$("#valSatelite<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 ").text(response);}});</script></td><!-- Fin !--><?php  $_smarty_tpl->tpl_vars['LISTVIEW_HEADER'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['LISTVIEW_HEADERS']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -135,7 +135,7 @@ $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->_loop = true;
 " class="icon-trash alignMiddle"></i></a><?php }?><!-- jmangarret dic2015 - Boton anular boleto!--><a><i title="Anular Boleto <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 " class="alignMiddle"><input type="image" id="anularBoleto<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 " src="themes/images/no.gif"></i></a><script>$(document).ready(function() {$('#anularBoleto<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
-').click(function() {if (confirm("Confirma ANULAR este boleto?")){$.ajax({method: "GET",url: "modules/Vtiger/ajaxProcesarList.php",type : 'GET',dataType:"html",data: { accion: "anularBoleto", id: <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+').click(function() {if (confirm("Confirma ANULAR este boleto?")){$.ajax({method: "GET",url: "modules/Boletos/ajaxProcesarList.php",type : 'GET',dataType:"html",data: { accion: "anularBoleto", id: <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
  },success: function(response){bootbox.alert(response);}});return false;}else{return false;}});});</script><!-- Fin !--></span></div></td><?php }?></td><?php } ?></tr><?php } ?></table><!--added this div for Temporarily --><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_ENTIRES_COUNT']->value=='0'){?><table class="emptyRecordsDiv"><tbody><tr><td><?php $_smarty_tpl->tpl_vars['SINGLE_MODULE'] = new Smarty_variable("SINGLE_".($_smarty_tpl->tpl_vars['MODULE']->value), null, 0);?><?php echo vtranslate('LBL_NO');?>
  <?php echo vtranslate($_smarty_tpl->tpl_vars['MODULE']->value,$_smarty_tpl->tpl_vars['MODULE']->value);?>
  <?php echo vtranslate('LBL_FOUND');?>

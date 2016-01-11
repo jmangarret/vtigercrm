@@ -9,7 +9,7 @@ class BoletosHandler extends VTEventHandler {
 				// Get the account name		
 				$idVenta = $entityData->get('registrodeventasid');
 				$idBoleto=$entityData->getId(); //OBTIENE ID DE LA VENTA
-				$this->updateBoletos($idBoleto,$idVenta,NULL);
+				//$this->updateBoletos($idBoleto,$idVenta,NULL);
         	}
     	}
     	return true;

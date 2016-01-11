@@ -1732,7 +1732,23 @@ jQuery.Class("Vtiger_List_Js",{
 		//Just reset all the checkboxes on page load: added for chrome issue.
 		var listViewContainer = this.getListViewContentContainer();
 		listViewContainer.find('#listViewEntriesMainCheckBox,.listViewEntriesCheckBox').prop('checked', false);
+		this.procesarLocs();
 	},
+
+
+	procesarLocs : function(){
+		var state = true;		
+		jQuery('.listViewEntriesCheckBox').each(function(index,element){
+			if(jQuery(element).is(':checked')){
+				alert("params 2");
+			}else{
+				state = false;
+				return false;
+			}
+		});
+		
+	},
+
 
 	/**
 	 * Function that executes after the mass delete action

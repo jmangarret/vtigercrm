@@ -48,7 +48,7 @@
 		&nbsp;
 	 </div>
 </div>
-<div class="listViewEntriesDiv contents-bottomscroll">
+<div class="listViewEntriesDiv contents-bottomscroll" id="contenido">
 	<div class="bottomscroll-div">
 	<input type="hidden" value="{$ORDER_BY}" id="orderBy">
 	<input type="hidden" value="{$SORT_ORDER}" id="sortOrder">
@@ -63,12 +63,22 @@
 				<th width="5%" class="{$WIDTHTYPE}">
 					<input type="checkbox" id="listViewEntriesMainCheckBox" />
 				</th>
+
+				<!-- jmangarret dic2015 - ENCABEZADO de Columna cliente asociada!-->	
+				<th nowrap {if $LISTVIEW_HEADER@last} colspan="1" {/if} class="{$WIDTHTYPE}">
+					<a href="javascript:void(0);" class="listViewHeaderValues">
+						Cliente
+					</a>
+				</th>	
+				<!-- Fin !-->		
+
 				{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
 				<th nowrap {if $LISTVIEW_HEADER@last} colspan="2" {/if} class="{$WIDTHTYPE}">
 					<a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="{if $COLUMN_NAME eq $LISTVIEW_HEADER->get('column')}{$NEXT_SORT_ORDER}{else}ASC{/if}" data-columnname="{$LISTVIEW_HEADER->get('column')}">{vtranslate($LISTVIEW_HEADER->get('label'), $MODULE)}
 						&nbsp;&nbsp;{if $COLUMN_NAME eq $LISTVIEW_HEADER->get('column')}<img class="{$SORT_IMAGE} icon-white">{/if}</a>
 				</th>
 				{/foreach}
+
 			</tr>
 		</thead>
 		{foreach item=LISTVIEW_ENTRY from=$LISTVIEW_ENTRIES name=listview}
@@ -76,6 +86,24 @@
             <td  width="5%" class="{$WIDTHTYPE}">
 				<input type="checkbox" value="{$LISTVIEW_ENTRY->getId()}" class="listViewEntriesCheckBox"/>
 			</td>
+
+			<!-- jmangarret dic2015 - DATOS de Columna cliente asociada!-->	
+			<td class="listViewEntryValue" id="valSatelite{$LISTVIEW_ENTRY->getId()}">				
+				<script>				
+				$.ajax({
+				method: "GET",
+				url: "modules/Vtiger/ajaxProcesarList.php",
+				type : 'GET',
+				dataType:"html",
+				data: { accion: "buscarClientePorBoletoId", id: {$LISTVIEW_ENTRY->getId()} },
+				success: function(response){     
+				     $("#valSatelite{$LISTVIEW_ENTRY->getId()}").text(response);
+				  	}
+				});
+				</script>
+			</td>
+			<!-- Fin !-->		
+
 			{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
 			{assign var=LISTVIEW_HEADERNAME value=$LISTVIEW_HEADER->get('name')}
 			<td class="listViewEntryValue {$WIDTHTYPE}" data-field-type="{$LISTVIEW_HEADER->getFieldDataType()}" data-field-name="{$LISTVIEW_HEADER->getFieldName()}" nowrap>
@@ -102,11 +130,41 @@
 						{if $IS_MODULE_DELETABLE}
 							<a class="deleteRecordButton"><i title="{vtranslate('LBL_DELETE', $MODULE)}" class="icon-trash alignMiddle"></i></a>
 						{/if}
+
+
+						<!-- jmangarret dic2015 - Boton anular boleto!-->	
+						<a><i title="Anular Boleto {$LISTVIEW_ENTRY->getId()}" class="alignMiddle">
+							  <input type="image" id="anularBoleto{$LISTVIEW_ENTRY->getId()}" src="themes/images/no.gif">
+						</i></a>
+						<script>
+					    $(document).ready(function() {     
+					        $('#anularBoleto{$LISTVIEW_ENTRY->getId()}').click(function() {
+					            if (confirm("Confirma ANULAR este boleto?")){					            	
+									$.ajax({
+									method: "GET",
+									url: "modules/Vtiger/ajaxProcesarList.php",
+									type : 'GET',
+									dataType:"html",
+									data: { accion: "anularBoleto", id: {$LISTVIEW_ENTRY->getId()} },
+									success: function(response){     
+									     bootbox.alert(response);
+									  	}
+									});									
+					            	return false;
+					            }else{
+					            	return false;	
+					            }					            
+					        });    
+					    });
+						</script>
+						<!-- Fin !-->					
+
 					</span>
 				</div></td>
 				{/if}
 			</td>
 			{/foreach}
+
 		</tr>
 		{/foreach}
 	</table>

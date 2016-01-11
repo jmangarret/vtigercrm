@@ -161,7 +161,7 @@ function _detectModulenameFromRecordId($wsrecordid) {
 
 function acc_testConn($config, $connid, $connseed, $type)
 {
-	acc_prepareReq(&$req, &$proxy, "testconn_acc.php", $config["useproxy"], true);
+	acc_prepareReq($req, $proxy, "testconn_acc.php", $config["useproxy"], true);
 	$params = array(
 				 "connid" => $connid,
 				 "smscod" => $connseed,

@@ -35,29 +35,24 @@ class Boletos extends Vtiger_CRMEntity {
 	/**
 	 * Mandatory for Listing (Related listview)
 	 */
-	var $list_fields = array (		
-		'LBL_LOCALIZADOR' => array('boletos', 'localizador'),		
-		'LBL_CF_1605' => array('boletos', 'cf_1605'),
-		'LBL_TIPOPASAJERO' => array('boletos', 'tipopasajero'),
-		'LBL_FEE' => array('boletos', 'fee'),
-		'LBL_CANTIDAD' => array('boletos', 'cantidad'),
-		'LBL_AMOUNT' => array('boletos', 'amount'),
-		'LBL_TOTALBOLETOS' => array('boletos', 'totalboletos'),
+	var $list_fields = array (				
+		'LBL_PASS' => array('boletos', 'passenger'),		
+		'LBL_FECHA' => array('boletos', 'fecha_emision'),		
+		'LBL_MONTOBASE' => array('boletos', 'monto_base'),
+		'LBL_FEE' => array('boletos', 'fee'),		
+		'LBL_AMOUNT' => array('boletos', 'amount'),		
 		'LBL_CURRENCY' => array('boletos', 'currency'),
-		'LBL_REGISTRODEVENTASID' => array('boletos', 'registrodeventasid'),
+		'LBL_LOCALIZADOR' => array('boletos', 'localizadorid'),		
 
 );
-	var $list_fields_name = array (		
-		'LBL_LOCALIZADOR' => 'localizador',		
-		'LBL_CF_1605' => 'cf_1605',
-		'LBL_TIPOPASAJERO' => 'tipopasajero',
-		'LBL_FEE' => 'fee',
-		'LBL_CANTIDAD' => 'cantidad',
-		'LBL_AMOUNT' => 'amount',
-		'LBL_TOTALBOLETOS' => 'totalboletos',
-		'LBL_CURRENCY' => 'currency',
-		'LBL_REGISTRODEVENTASID' => 'registrodeventasid',
-
+	var $list_fields_name = array (				
+		'LBL_PASS' => 'passenger',		
+		'LBL_FECHA' => 'fecha_emision',		
+		'LBL_MONTOBASE' => 'monto_base',
+		'LBL_FEE' => 'fee',		
+		'LBL_AMOUNT' => 'amount',		
+		'LBL_CURRENCY' => 'currency',		
+		'LBL_LOCALIZADOR' => 'localizadorid',		
 );
 
 	// Make the field link to detail view

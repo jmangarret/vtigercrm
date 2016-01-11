@@ -377,6 +377,7 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 	function showRelatedList(Vtiger_Request $request) {
 		$moduleName = $request->getModule();
 		$relatedModuleName = $request->get('relatedModule');
+
 		$targetControllerClass = null;
 
 		// Added to support related list view from the related module, rather than the base module.
@@ -391,6 +392,7 @@ class Vtiger_Detail_View extends Vtiger_Index_View {
 				$targetControllerClass = Vtiger_Loader::getComponentClassName('View', 'RelatedList', $moduleName);
 			}
 		}
+	
 		if($targetControllerClass) {
 			$targetController = new $targetControllerClass();
 			return $targetController->process($request);

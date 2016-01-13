@@ -41,6 +41,7 @@ class Boletos extends Vtiger_CRMEntity {
 		'LBL_MONTOBASE' => array('boletos', 'monto_base'),
 		'LBL_FEE' => array('boletos', 'fee'),		
 		'LBL_AMOUNT' => array('boletos', 'amount'),		
+		'LBL_TOTAL' => array('boletos', 'totalboletos'),		
 		'LBL_CURRENCY' => array('boletos', 'currency'),
 		'LBL_LOCALIZADOR' => array('boletos', 'localizadorid'),		
 
@@ -51,6 +52,7 @@ class Boletos extends Vtiger_CRMEntity {
 		'LBL_MONTOBASE' => 'monto_base',
 		'LBL_FEE' => 'fee',		
 		'LBL_AMOUNT' => 'amount',		
+		'LBL_TOTAL' => 'totalboletos',		
 		'LBL_CURRENCY' => 'currency',		
 		'LBL_LOCALIZADOR' => 'localizadorid',		
 );

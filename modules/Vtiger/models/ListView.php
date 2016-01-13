@@ -210,7 +210,11 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 		if ($current_user->roleid=="H9"){
 			$listQuery .= ' AND smownerid='.$current_user->id;
 		}
-
+		//Modified by jmangarret 13ene2016 popUP seleccionar localizadores desde Registro de Ventas
+		if ($moduleName=="Localizadores" && $sourceModule=="RegistroDeVentas"){
+			$listQuery .= ' AND vtiger_localizadores.procesado=1';	
+		}
+		//	die($listQuery);
 
 		if(!empty($orderBy)) {
             if($orderByFieldModel && $orderByFieldModel->isReferenceField()){

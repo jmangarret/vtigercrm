@@ -212,7 +212,7 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 		}
 		//Modified by jmangarret 13ene2016 popUP seleccionar localizadores desde Registro de Ventas
 		if ($moduleName=="Localizadores" && $sourceModule=="RegistroDeVentas"){
-			$listQuery .= ' AND vtiger_localizadores.procesado=1';	
+			$listQuery .= ' AND vtiger_localizadores.procesado=0';	
 		}
 		//	die($listQuery);
 

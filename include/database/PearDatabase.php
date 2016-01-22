@@ -1071,7 +1071,7 @@ class PearDatabase{
 
 if(empty($adb)) {
 	$adb = new PearDatabase();
-	$adb->connect();
+	$adb->connect();	
 }
 //$adb->database->setFetchMode(ADODB_FETCH_BOTH);
 ?>

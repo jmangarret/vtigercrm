@@ -47,41 +47,80 @@
 					{foreach item=LISTVIEW_BASICACTION from=$LISTVIEW_LINKS['LISTVIEWBASIC']}
 						<span class="btn-group">
 							<button id="{$MODULE}_listView_basicAction_{Vtiger_Util_Helper::replaceSpaceWithUnderScores($LISTVIEW_BASICACTION->getLabel())}" class="btn addButton" {if stripos($LISTVIEW_BASICACTION->getUrl(), 'javascript:')===0} onclick='{$LISTVIEW_BASICACTION->getUrl()|substr:strlen("javascript:")};'{else} onclick='window.location.href="{$LISTVIEW_BASICACTION->getUrl()}"'{/if}><i class="icon-plus icon-white"></i>&nbsp;<strong>{vtranslate($LISTVIEW_BASICACTION->getLabel(), $MODULE)}</strong></button>								
-					<!-- jmangarret dic2015 !-->				   
+			   		     
+						</span>
+					{/foreach}
+
+					<!-- jmangarret BOTONES DE ACCION POR LOTE EN EL HEADER dic2015, ene2016 !-->				   
+					{if $MODULE eq 'Localizadores'}
+					<span class="btn-group">
 							<a href="javascript:void(0);">
 							<button id="{$MODULE}_listView_basicAction_Process" class="btn addButton">
 								<i class="icon-plus icon-white"></i>&nbsp;
 								<strong>Procesar</strong> 
 							</button>
 							</a>
-					<!-- jmangarret dic2015 !-->				   		     
-						</span>
-					{/foreach}
-
+					</span>
 					<script type="text/javascript">										 
 					 $(document).ready(function() {	
-					 		    $('#{$MODULE}_listView_basicAction_Process').click(function() {
-						        var ids = new Array();						 
-						        $("input[class=listViewEntriesCheckBox]:checked").each(function() {							   
-						            ids.push($(this).val());						            
-						        });												        
-					            var ajax_data = {
-					            "userid" : $("#current_user_id").val(),						
-								"accion" : "procesarBoletos",					
-								"id" : ids					
-								};		
-								jQuery.ajax({
-									data: ajax_data,
-									url: 'modules/Boletos/ajaxProcesarList.php',
-									type: 'get',
-									success: function(response){														
-										if (response!='')
-										bootbox.alert(response);
-									}
-								});
-						    });
-						});						
+				 		$('#{$MODULE}_listView_basicAction_Process').click(function(){
+					        var ids1 = new Array();						 
+					        $("input[class=listViewEntriesCheckBox]:checked").each(function() {							   					        	
+					            ids1.push($(this).val());						            
+					        });												        
+				            var ajax_data1 = {
+				            "userid" : $("#current_user_id").val(),						
+							"accion" : "procesarLocalizadores",					
+							"id" : ids1					
+							};		
+							jQuery.ajax({
+								data: ajax_data1,
+								url: 'modules/Localizadores/ajaxProcesarList_Loc.php',
+								type: 'get',
+								success: function(response){														
+									if (response!='')
+									bootbox.alert(response);
+								}
+							});
+					    });	
+					});						
 					</script>
+					{/if}
+
+					{if $MODULE eq 'Boletos'}
+					<span class="btn-group">
+							<a href="javascript:void(0);">
+							<button id="{$MODULE}_listView_basicAction_Anular" class="btn addButton">
+								<i class="icon-plus icon-white"></i>&nbsp;
+								<strong>Anular</strong> 
+							</button>
+							</a>
+					</span>
+					<script type="text/javascript">
+							$('#{$MODULE}_listView_basicAction_Anular').click(function(){
+					        var ids2 = new Array();						 
+					        $("input[class=listViewEntriesCheckBox]:checked").each(function() {							   
+					            ids2.push($(this).val());						            
+					        });												        
+				            var ajax_data2 = {
+				            "userid" : $("#current_user_id").val(),						
+							"accion" : "anularBoletosPorLote",					
+							"id" : ids2				
+							};		
+							jQuery.ajax({
+								data: ajax_data2,
+								url: 'modules/Boletos/ajaxProcesarList_Boletos.php',
+								type: 'get',
+								success: function(response){														
+									if (response!='')
+									bootbox.alert(response);
+								}
+							});
+					    });
+					</script>
+					{/if}
+				<!-- fin jmangarret dic2015, ene2016 !-->	
+
 				</span>
 			<span class="btn-toolbar span4">
 				<span class="customFilterMainSpan btn-group">
@@ -118,6 +157,7 @@
 						<input type="hidden" value="0" id="customFilter" />
 					{/if}
 					{/if}
+					<!-- fin jmangarret 16jun2015 !-->
 				</span>
 			</span>
 			<span class="hide filterActionImages pull-right">

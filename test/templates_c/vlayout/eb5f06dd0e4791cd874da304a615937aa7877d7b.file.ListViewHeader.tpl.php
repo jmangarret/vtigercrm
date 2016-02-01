@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2016-01-11 11:26:46
+<?php /* Smarty version Smarty-3.1.7, created on 2016-02-01 12:37:25
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20298757745645ebdd7fd2a8-88301050%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'eb5f06dd0e4791cd874da304a615937aa7877d7b' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl',
-      1 => 1452526791,
+      1 => 1454346427,
       2 => 'file',
     ),
   ),
@@ -73,9 +73,11 @@ _listView_basicAction_<?php echo Vtiger_Util_Helper::replaceSpaceWithUnderScores
 " class="btn addButton" <?php if (stripos($_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value->getUrl(),'javascript:')===0){?> onclick='<?php echo substr($_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value->getUrl(),strlen("javascript:"));?>
 ;'<?php }else{ ?> onclick='window.location.href="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value->getUrl();?>
 "'<?php }?>><i class="icon-plus icon-white"></i>&nbsp;<strong><?php echo vtranslate($_smarty_tpl->tpl_vars['LISTVIEW_BASICACTION']->value->getLabel(),$_smarty_tpl->tpl_vars['MODULE']->value);?>
-</strong></button><!-- jmangarret dic2015 !--><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
-_listView_basicAction_Process" class="btn addButton"><i class="icon-plus icon-white"></i>&nbsp;<strong>Procesar</strong></button></a><!-- jmangarret dic2015 !--></span><?php } ?><script type="text/javascript">$(document).ready(function() {$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
-_listView_basicAction_Process').click(function() {var ids = new Array();$("input[class=listViewEntriesCheckBox]:checked").each(function() {ids.push($(this).val());});var ajax_data = {"userid" : $("#current_user_id").val(),"accion" : "procesarBoletos","id" : ids};jQuery.ajax({data: ajax_data,url: 'modules/Boletos/ajaxProcesarList.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});});</script></span><span class="btn-toolbar span4"><span class="customFilterMainSpan btn-group"><!--Modified by jmangarret 16jun2015 --><?php if ($_smarty_tpl->tpl_vars['ROLEID']->value!='H9'){?><?php if (count($_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value)>0){?><select id="customFilter" style="width:350px;"><?php  $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->_loop = false;
+</strong></button></span><?php } ?><!-- jmangarret BOTONES DE ACCION POR LOTE EN EL HEADER dic2015, ene2016 !--><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Localizadores'){?><span class="btn-group"><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Process" class="btn addButton"><i class="icon-plus icon-white"></i>&nbsp;<strong>Procesar</strong></button></a></span><script type="text/javascript">$(document).ready(function() {$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Process').click(function(){var ids1 = new Array();$("input[class=listViewEntriesCheckBox]:checked").each(function() {ids1.push($(this).val());});var ajax_data1 = {"userid" : $("#current_user_id").val(),"accion" : "procesarLocalizadores","id" : ids1};jQuery.ajax({data: ajax_data1,url: 'modules/Localizadores/ajaxProcesarList_Loc.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});});</script><?php }?><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Boletos'){?><span class="btn-group"><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Anular" class="btn addButton"><i class="icon-plus icon-white"></i>&nbsp;<strong>Anular</strong></button></a></span><script type="text/javascript">$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Anular').click(function(){var ids2 = new Array();$("input[class=listViewEntriesCheckBox]:checked").each(function() {ids2.push($(this).val());});var ajax_data2 = {"userid" : $("#current_user_id").val(),"accion" : "anularBoletosPorLote","id" : ids2};jQuery.ajax({data: ajax_data2,url: 'modules/Boletos/ajaxProcesarList_Boletos.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});</script><?php }?><!-- fin jmangarret dic2015, ene2016 !--></span><span class="btn-toolbar span4"><span class="customFilterMainSpan btn-group"><!--Modified by jmangarret 16jun2015 --><?php if ($_smarty_tpl->tpl_vars['ROLEID']->value!='H9'){?><?php if (count($_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value)>0){?><select id="customFilter" style="width:350px;"><?php  $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->_loop = false;
  $_smarty_tpl->tpl_vars['GROUP_LABEL'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['CUSTOM_VIEWS']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->key => $_smarty_tpl->tpl_vars['GROUP_CUSTOM_VIEWS']->value){
@@ -117,7 +119,7 @@ $_smarty_tpl->tpl_vars['FOLDER']->_loop = true;
 </option><?php } ?></optgroup><?php }?></select><span class="filterActionsDiv hide"><hr><ul class="filterActions"><li data-value="create" id="createFilter" data-createurl="<?php echo $_smarty_tpl->tpl_vars['CUSTOM_VIEW']->value->getCreateUrl();?>
 "><i class="icon-plus-sign"></i> <?php echo vtranslate('LBL_CREATE_NEW_FILTER');?>
  </li></ul></span><img class="filterImage" src="<?php echo vimage_path('filter.png');?>
-" style="display:none;height:13px;margin-right:2px;vertical-align: middle;"><?php }else{ ?><input type="hidden" value="0" id="customFilter" /><?php }?><?php }?></span></span><span class="hide filterActionImages pull-right"><i title="<?php echo vtranslate('LBL_DENY',$_smarty_tpl->tpl_vars['MODULE']->value);?>
+" style="display:none;height:13px;margin-right:2px;vertical-align: middle;"><?php }else{ ?><input type="hidden" value="0" id="customFilter" /><?php }?><?php }?><!-- fin jmangarret 16jun2015 !--></span></span><span class="hide filterActionImages pull-right"><i title="<?php echo vtranslate('LBL_DENY',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " data-value="deny" class="icon-ban-circle alignMiddle denyFilter filterActionImage pull-right"></i><i title="<?php echo vtranslate('LBL_APPROVE',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " data-value="approve" class="icon-ok alignMiddle approveFilter filterActionImage pull-right"></i><i title="<?php echo vtranslate('LBL_DELETE',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " data-value="delete" class="icon-trash alignMiddle deleteFilter filterActionImage pull-right"></i><i title="<?php echo vtranslate('LBL_EDIT',$_smarty_tpl->tpl_vars['MODULE']->value);?>

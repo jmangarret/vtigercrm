@@ -65,11 +65,13 @@
 				</th>
 
 				<!-- jmangarret dic2015 - ENCABEZADO de Columna cliente asociada!-->	
+				{if $MODULE eq 'Boletos'}
 				<th nowrap {if $LISTVIEW_HEADER@last} colspan="1" {/if} class="{$WIDTHTYPE}">
 					<a href="javascript:void(0);" class="listViewHeaderValues">
 						Cliente
 					</a>
 				</th>	
+				{/if}
 				<!-- Fin !-->		
 
 				{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
@@ -87,12 +89,13 @@
 				<input type="checkbox" value="{$LISTVIEW_ENTRY->getId()}" class="listViewEntriesCheckBox"/>
 			</td>
 
-			<!-- jmangarret dic2015 - DATOS de Columna cliente asociada!-->	
+			<!-- jmangarret dic2015 - DATOS de Columna cliente asociada a Boletos!-->	
+			{if $MODULE eq 'Boletos'}
 			<td class="listViewEntryValue" id="valSatelite{$LISTVIEW_ENTRY->getId()}">				
 				<script>				
 				$.ajax({
 				method: "GET",
-				url: "modules/Boletos/ajaxProcesarList.php",
+				url: "modules/Boletos/ajaxProcesarList_Boletos.php",
 				type : 'GET',
 				dataType:"html",
 				data: { accion: "buscarClientePorBoletoId", id: {$LISTVIEW_ENTRY->getId()} },
@@ -102,7 +105,8 @@
 				});
 				</script>
 			</td>
-			<!-- Fin !-->		
+			{/if}
+			<!-- Fin Columna cliente asociada a Boletos!-->		
 
 			{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
 			{assign var=LISTVIEW_HEADERNAME value=$LISTVIEW_HEADER->get('name')}
@@ -142,7 +146,7 @@
 					            if (confirm("Confirma ANULAR este boleto?")){					            	
 									$.ajax({
 									method: "GET",
-									url: "modules/Boletos/ajaxProcesarList.php",
+									url: "modules/Boletos/ajaxProcesarList_Boletos.php",
 									type : 'GET',
 									dataType:"html",
 									data: { accion: "anularBoleto", id: {$LISTVIEW_ENTRY->getId()} },

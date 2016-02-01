@@ -16,7 +16,7 @@ class RegistroDeVentasHandler extends VTEventHandler {
 			if ($data->isNew()){		
 			 	//Inicializamos status de la venta	 	      
  				$sql="UPDATE vtiger_registrodeventascf SET  cf_1621='Pendiente de Pago' where registrodeventasid = ? ";
-				$result = $adb->pquery($sql, array($id));	
+				//$result = $adb->pquery($sql, array($id));	
         		}      
 
         	//BUSCAMOS LOS DATOS DE LA COTIZACION
@@ -27,7 +27,7 @@ class RegistroDeVentasHandler extends VTEventHandler {
 				$row = $adb->fetch_row($result);
 				$nrows=$row[0];
         	}
-        $this->updateVentas($id);
+       // $this->updateVentas($id);
         }
     }
     function updateVentas($idVenta){

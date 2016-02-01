@@ -10,7 +10,7 @@ class RegistroDePagosHandler extends VTEventHandler {
 				$idVenta = $entityData->get('registrodeventasid');
 				$idp=$entityData->getId(); //OBTIENE ID DEL PAGO
 				$idpago=$_REQUEST["record"];
-				$this->updatePagos($idpago,$idVenta,NULL);
+				//$this->updatePagos($idpago,$idVenta,NULL);
         	}
     	}
     	return true;

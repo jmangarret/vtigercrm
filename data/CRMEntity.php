@@ -59,7 +59,7 @@ class CRMEntity {
 	}
 
 	function saveentity($module, $fileid = '') {
-		global $current_user, $adb; //$adb added by raju for mass mailing
+		global $current_user, $adb, $log; //$adb added by raju for mass mailing
 		$insertion_mode = $this->mode;
 
 		$columnFields = $this->column_fields;
@@ -94,6 +94,7 @@ class CRMEntity {
 		$this->db->println("TRANS saveentity ends");
 
 		// vtlib customization: Hook provide to enable generic module relation.
+		$log->debug("CHEQUEANDO CRMENTITYREL....REQUEST CREATE MODE".$_REQUEST['createmode']);
 		if ($_REQUEST['createmode'] == 'link') {
 			$for_module = vtlib_purify($_REQUEST['return_module']);
 			$for_crmid = vtlib_purify($_REQUEST['return_id']);
@@ -101,7 +102,7 @@ class CRMEntity {
 			$with_crmid = $this->id;
 
 			$on_focus = CRMEntity::getInstance($for_module);
-
+			$log->debug("CHEQUEANDO CRMENTITYREL.... FOR MODULE". $for_module); 
 			if ($for_module && $for_crmid && $with_module && $with_crmid) {
 				relateEntities($on_focus, $for_module, $for_crmid, $with_module, $with_crmid);
 			}

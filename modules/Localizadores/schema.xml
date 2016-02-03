@@ -7,14 +7,13 @@
   `localizadoresid` int(11) NOT NULL DEFAULT '0',
     `localizador` VARCHAR(128) DEFAULT NULL,
     `contactoid` INT(19) DEFAULT NULL,
-    `gds` VARCHAR(128) DEFAULT NULL,
-    `solicitud` VARCHAR(128) DEFAULT NULL,
     `paymentmethod` VARCHAR(128) DEFAULT NULL,
     `referencia` VARCHAR(128) DEFAULT NULL,
     `airline` VARCHAR(128) DEFAULT NULL,
     `status` VARCHAR(128) DEFAULT NULL,
-    `registrodeventasid` INT(19) DEFAULT NULL,
     `procesado` VARCHAR(5) DEFAULT NULL,
+    `registrodeventasid` INT(19) DEFAULT NULL,
+    `gds` VARCHAR(128) DEFAULT NULL,
     `totalloc` DECIMAL(25,3) DEFAULT NULL,
     PRIMARY KEY (`localizadoresid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>

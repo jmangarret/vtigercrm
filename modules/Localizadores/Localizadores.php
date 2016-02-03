@@ -35,52 +35,50 @@ class Localizadores extends Vtiger_CRMEntity {
 	/**
 	 * Mandatory for Listing (Related listview)
 	 */
-	var $list_fields = Array (
+	var $list_fields = array (
+		'LBL_REGISTRODEVENTASID' => array('localizadores', 'registrodeventasid'),
 		'LBL_LOCALIZADOR' => array('localizadores', 'localizador'),
 		'LBL_CONTACTOID' => array('localizadores', 'contactoid'),
 		'LBL_GDS' => array('localizadores', 'gds'),
-		'LBL_SOLICITUD' => array('localizadores', 'solicitud'),
 		'LBL_STATUS' => array('localizadores', 'status'),
 		'LBL_PROCESADO' => array('localizadores', 'procesado'),
 
-	);
-	var $list_fields_name = Array (
+);
+	var $list_fields_name = array (
+		'LBL_REGISTRODEVENTASID' => 'registrodeventasid',
 		'LBL_LOCALIZADOR' => 'localizador',
 		'LBL_CONTACTOID' => 'contactoid',
 		'LBL_GDS' => 'gds',
-		'LBL_SOLICITUD' => 'solicitud',
 		'LBL_STATUS' => 'status',
 		'LBL_PROCESADO' => 'procesado',
 
-	);
+);
 
 	// Make the field link to detail view
 	var $list_link_field = 'localizador';
 
 	// For Popup listview and UI type support
-	var $search_fields = Array(
+	var $search_fields = array (
 		'LBL_PAYMENTMETHOD' => array('localizadores', 'paymentmethod'),
 		'LBL_STATUS' => array('localizadores', 'status'),
 		'LBL_PROCESADO' => array('localizadores', 'procesado'),
-		'LBL_REGISTRODEVENTASID' => array('localizadores', 'registrodeventasid'),
 		'LBL_GDS' => array('localizadores', 'gds'),
 		'LBL_LOCALIZADOR' => array('localizadores', 'localizador'),
 		'LBL_CONTACTOID' => array('localizadores', 'contactoid'),
 
-	);
-	var $search_fields_name = Array (
+);
+	var $search_fields_name = array (
 		'LBL_PAYMENTMETHOD' => 'paymentmethod',
 		'LBL_STATUS' => 'status',
 		'LBL_PROCESADO' => 'procesado',
-		'LBL_REGISTRODEVENTASID' => 'registrodeventasid',
 		'LBL_GDS' => 'gds',
 		'LBL_LOCALIZADOR' => 'localizador',
 		'LBL_CONTACTOID' => 'contactoid',
 
-	);
+);
 
 	// For Popup window record selection
-	var $popup_fields = Array ('localizador');
+	var $popup_fields = array('localizador');
 
 	// For Alphabetical search
 	var $def_basicsearch_col = 'localizador';
@@ -90,7 +88,7 @@ class Localizadores extends Vtiger_CRMEntity {
 
 	// Used when enabling/disabling the mandatory fields for the module.
 	// Refers to vtiger_field.fieldname values.
-	var $mandatory_fields = Array('localizador','assigned_user_id');
+	var $mandatory_fields = array('createdtime', 'modifiedtime', 'localizador');
 
 	var $default_order_by = 'localizador';
 	var $default_sort_order='ASC';

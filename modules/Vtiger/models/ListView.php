@@ -214,7 +214,10 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 		if ($moduleName=="Localizadores" && $sourceModule=="RegistroDeVentas"){
 			$listQuery .= ' AND vtiger_localizadores.procesado=0';	
 		}
-		//	die($listQuery);
+		//Modified by jmangarret 03feb2016 popUP seleccionar cuentas desde Comsiones Satelites
+		if ($moduleName=="Accounts" && $sourceModule=="ComisionSatelites"){
+			$listQuery .= ' AND vtiger_account.account_type="Satelite"';	
+		}		
 
 		if(!empty($orderBy)) {
             if($orderByFieldModel && $orderByFieldModel->isReferenceField()){

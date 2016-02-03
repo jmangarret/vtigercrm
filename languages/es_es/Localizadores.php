@@ -15,16 +15,16 @@ $languageStrings = array(
 	'LBL_BLOCK_SYSTEM_INFORMATION' => '',
 	'LBL_REGISTRODEVENTASID' => 'Registro de Venta',
 	'LBL_LOCALIZADOR' => 'Localizador',
-	'LBL_PAYMENTMETHOD' => 'Forma de Pago',
-	'LBL_REFERENCIA' => 'Referencia',
-	'LBL_TOTALLOC' => 'Total LOC',
 	'LBL_AIRLINE' => 'Aerolinea',
+	'LBL_TOTALLOC' => 'Total LOC',
+	'LBL_REFERENCIA' => 'Referencia',
+	'LBL_PAYMENTMETHOD' => 'Forma de Pago',
 	'LBL_CONTACTOID' => 'Contacto',
 	'LBL_GDS' => 'Sistema GDS',
-	'LBL_SOLICITUD' => 'Solicitud',
 	'LBL_STATUS' => 'Status',
 	'LBL_PROCESADO' => 'Procesado',
 	'LBL_BOLETOS' => 'Boletos',
+	'LBL_SOLICITUD' => 'Solicitud',
 
 );
 

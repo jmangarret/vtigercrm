@@ -10,6 +10,7 @@ $userid= $_GET["userid"];
 $accion= $_GET["accion"];
 
 if ($accion=="procesarLocalizadores"){		
+	if (isset($id))
 	foreach ($id as $idLoc) {
 		/// CREACION DEL REGISTO DE VENTAS ///
 		$sqlIdCrm=mysql_query("CALL getCrmId();");
@@ -30,12 +31,22 @@ if ($accion=="procesarLocalizadores"){
 		$sqlSetCrm="CALL setCrmEntity('RegistroDeVentas','$moduleRecord','".$fhoy."',$crmId,$userid)";
 		$setCrm=mysql_query($sqlSetCrm);
 
+		//Buscamos contacto para el registro de venta si el contacto del Localizaodr pertenece a un Satelite
+		$sqlContacto ="SELECT c.contactid FROM vtiger_account AS a ";
+		$sqlContacto.="INNER JOIN vtiger_contactdetails 	AS c ON a.accountid=c.accountid ";
+		$sqlContacto.="INNER JOIN vtiger_localizadores 	AS l ON l.contactoid=c.contactid ";		
+		$sqlContacto.="WHERE a.account_type='Satelite' AND localizadoresid=".$idLoc;	
+		$qryContacto=mysql_query($sqlContacto);
+		$resContacto=mysql_fetch_row($qryContacto);		
+		$contactid = (isset($resContacto[0]) ? $resContacto[0] : '');
+
 		//Creamos registro de venta
 		$sqlVenta ="insert into vtiger_registrodeventas(registrodeventasid,registrodeventasname,registrodeventastype,fecha,contacto) ";
-		$sqlVenta.="values($crmId,'$moduleRecord','Boleto',NULL,'')";
+		$sqlVenta.="values($crmId,'$moduleRecord','Boleto',NULL,$contactid)";
 		$qryVenta=mysql_query($sqlVenta);
+		$insert_venta=mysql_affected_rows();
 
-		$sqlReg2="insert into vtiger_registrodeventascf(registrodeventasid,cf_1621,cf_1627) values($crmId,'Pendiente de Pago','Venta generada desde procesar Localizadores')";
+		$sqlReg2="insert into vtiger_registrodeventascf(registrodeventasid,cf_1621,cf_1627) values($crmId,'Pendiente de Pago','Venta generada desde Procesar Localizadores')";
 		$qryReg2=mysql_query($sqlReg2);
 
 		$idRecordSig=($idRecord+1);
@@ -45,7 +56,8 @@ if ($accion=="procesarLocalizadores"){
 
 		//$sql="UPDATE vtiger_boletos SET status='Procesado' WHERE boletosid=".$i;		
 		$qryUpdLoc=mysql_query("UPDATE vtiger_localizadores SET procesado=1 WHERE localizadoresid=".$idLoc);			
-		if (mysql_affected_rows()>0){
+		$update_loc=mysql_affected_rows();
+		if ($insert_venta>0 && $update_loc>0){
 			//Actualizamos venta asociada en Localizador					
 			$qryVtaLoc=mysql_query("UPDATE vtiger_localizadores SET registrodeventasid=$crmId WHERE localizadoresid=".$idLoc);
 			//Insertamos relacion entre modulos vtiger

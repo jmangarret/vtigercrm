@@ -2,6 +2,7 @@ log4php.debug
 config.inc.php
 config.performance.php
 log4php.properties
+test/templates_c
 user_privileges/
 storage/
 cache/

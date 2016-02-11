@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-11-16 17:36:22
+<?php /* Smarty version Smarty-3.1.7, created on 2016-02-11 16:02:46
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Localizadores/ListViewContents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2046244278564a4a6a7567a4-90204864%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c303eccab26813484fdfe21132b480f4b3ef7267' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Localizadores/ListViewContents.tpl',
-      1 => 1447711538,
+      1 => 1455222764,
       2 => 'file',
     ),
   ),
@@ -114,8 +114,11 @@ $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->_loop = true;
 ?><?php $_smarty_tpl->tpl_vars['LISTVIEW_HEADERNAME'] = new Smarty_variable($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->get('name'), null, 0);?><td class="listViewEntryValue <?php echo $_smarty_tpl->tpl_vars['WIDTHTYPE']->value;?>
 " data-field-type="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->getFieldDataType();?>
 " data-field-name="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->getFieldName();?>
-" nowrap><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->isNameField()==true||$_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->get('uitype')=='4'){?><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->getFieldName()=='localizador'){?><script>jQuery(document).ready(function() {$.ajax({data: { loc : "12674"},type: "POST",url: 'modules/Localizadores/ajax.php',success: function(response){$("a.boletos").attr("title", response);}});});</script><a href="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getDetailViewUrl();?>
-" class="boletos"><?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->get($_smarty_tpl->tpl_vars['LISTVIEW_HEADERNAME']->value);?>
+" nowrap><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->isNameField()==true||$_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->get('uitype')=='4'){?><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->getFieldName()=='localizador'){?><script>var _loc=<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+;$.ajax({data: { loc : _loc},type: "POST",url: 'modules/Localizadores/ajax.php',success: function(response){$("a.boletos<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+").attr("title", response);}});</script><a href="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getDetailViewUrl();?>
+" class="boletos<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+"><?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->get($_smarty_tpl->tpl_vars['LISTVIEW_HEADERNAME']->value);?>
 </a><?php }else{ ?><a href="<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getDetailViewUrl();?>
 " ><?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->get($_smarty_tpl->tpl_vars['LISTVIEW_HEADERNAME']->value);?>
 </a><?php }?><?php }elseif($_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->value->get('uitype')=='72'){?><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['CURRENT_USER_MODEL']->value->get('currency_symbol_placement');?>

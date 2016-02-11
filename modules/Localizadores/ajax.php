@@ -9,5 +9,6 @@ while ($row=mysql_fetch_row($qry)){
 	$boletos.=$row[0]. "  ";
 	
 }
+if ($cont>0)
 echo "$cont Boleto(s): ".$boletos;
 ?>

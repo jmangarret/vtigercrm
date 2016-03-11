@@ -85,6 +85,9 @@
 					    });	
 					});						
 					</script>
+
+
+
 					{/if}
 
 					{if $MODULE eq 'Boletos'}
@@ -172,4 +175,55 @@
 		</div>
 		</div>
 	<div class="listViewContentDiv" id="listViewContents">
+
+	<!-- jmangarret BUSQUEDA POR REPORTE PARA SATELITES feb2016!-->				   
+	{if $MODULE eq 'Localizadores'}	
+		<form action="" name="frmBuscar" method="post" onSubmit="return false">
+			<table class="table showInlineTable">
+				<tr>
+					<td class="fieldLabel wide">							
+						<span>Satelite: </span>						
+						<select class="chzn-single">
+							<option>--Seleccione--</option>
+						</select>		
+
+						<input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision1"></input>
+						<span class="add-on">
+						    <i class="icon-calendar"></i>
+						</span>
+						<input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision2"></input>
+						<span class="add-on">
+						    <i class="icon-calendar"></i>
+						</span>
+
+						<a href="javascript:void(0);">
+						<button id="{$MODULE}_listView_basicAction_Buscar" class="btn">								
+						<strong>Buscar</strong> 
+						</button>
+						</a>
+						<span id="searchIcon" class="add-on search-icon"><i class="icon-white icon-search "></i></span>
+					</td>
+				</tr>
+			</table>	
+		</form>	
+		<script type="text/javascript">										 
+		 $(document).ready(function() {	
+	 		$('#{$MODULE}_listView_basicAction_Buscar').click(function(){											        
+	            var ajax_data = {
+	            "userid" : $("#current_user_id").val(),						
+				"accion" : "listarBusqueda"				
+				};		
+				jQuery.ajax({
+					data: ajax_data,
+					url: 'modules/Localizadores/ajaxReporteSatelites.php',
+					type: 'get',
+					success: function(response){								
+						$("div.listViewEntriesDiv.contents-bottomscroll").html(response);
+					}
+				});
+		    });	
+		});						
+		</script>
+	{/if}
+	<!--fin jmangarret BUSQUEDA POR REPORTE PARA SATELITES feb2016!-->				   
 {/strip}

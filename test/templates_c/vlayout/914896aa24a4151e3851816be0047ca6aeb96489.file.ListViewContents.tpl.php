@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2016-02-01 11:34:33
+<?php /* Smarty version Smarty-3.1.7, created on 2016-03-11 16:50:52
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewContents.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20706116445645ebddad3607-06829913%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '914896aa24a4151e3851816be0047ca6aeb96489' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewContents.tpl',
-      1 => 1454342670,
+      1 => 1457731244,
       2 => 'file',
     ),
   ),
@@ -132,11 +132,11 @@ $_smarty_tpl->tpl_vars['LISTVIEW_HEADER']->_loop = true;
 " class="icon-th-list alignMiddle"></i></a>&nbsp;<?php if ($_smarty_tpl->tpl_vars['IS_MODULE_EDITABLE']->value){?><a href='<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getEditViewUrl();?>
 '><i title="<?php echo vtranslate('LBL_EDIT',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " class="icon-pencil alignMiddle"></i></a>&nbsp;<?php }?><?php if ($_smarty_tpl->tpl_vars['IS_MODULE_DELETABLE']->value){?><a class="deleteRecordButton"><i title="<?php echo vtranslate('LBL_DELETE',$_smarty_tpl->tpl_vars['MODULE']->value);?>
-" class="icon-trash alignMiddle"></i></a><?php }?><!-- jmangarret dic2015 - Boton anular boleto!--><a><i title="Anular Boleto <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
+" class="icon-trash alignMiddle"></i></a><?php }?><!-- jmangarret dic2015 - Boton anular boleto!--><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Boletos'){?><a><i title="Anular Boleto <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 " class="alignMiddle"><input type="image" id="anularBoleto<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 " src="themes/images/no.gif"></i></a><script>$(document).ready(function() {$('#anularBoleto<?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
 ').click(function() {if (confirm("Confirma ANULAR este boleto?")){$.ajax({method: "GET",url: "modules/Boletos/ajaxProcesarList_Boletos.php",type : 'GET',dataType:"html",data: { accion: "anularBoleto", id: <?php echo $_smarty_tpl->tpl_vars['LISTVIEW_ENTRY']->value->getId();?>
- },success: function(response){bootbox.alert(response);}});return false;}else{return false;}});});</script><!-- Fin !--></span></div></td><?php }?></td><?php } ?></tr><?php } ?></table><!--added this div for Temporarily --><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_ENTIRES_COUNT']->value=='0'){?><table class="emptyRecordsDiv"><tbody><tr><td><?php $_smarty_tpl->tpl_vars['SINGLE_MODULE'] = new Smarty_variable("SINGLE_".($_smarty_tpl->tpl_vars['MODULE']->value), null, 0);?><?php echo vtranslate('LBL_NO');?>
+ },success: function(response){bootbox.alert(response);}});return false;}else{return false;}});});</script><?php }?><!-- Fin !--></span></div></td><?php }?></td><?php } ?></tr><?php } ?></table><!--added this div for Temporarily --><?php if ($_smarty_tpl->tpl_vars['LISTVIEW_ENTIRES_COUNT']->value=='0'){?><table class="emptyRecordsDiv"><tbody><tr><td><?php $_smarty_tpl->tpl_vars['SINGLE_MODULE'] = new Smarty_variable("SINGLE_".($_smarty_tpl->tpl_vars['MODULE']->value), null, 0);?><?php echo vtranslate('LBL_NO');?>
  <?php echo vtranslate($_smarty_tpl->tpl_vars['MODULE']->value,$_smarty_tpl->tpl_vars['MODULE']->value);?>
  <?php echo vtranslate('LBL_FOUND');?>
 .<?php if ($_smarty_tpl->tpl_vars['IS_MODULE_EDITABLE']->value){?> <?php echo vtranslate('LBL_CREATE');?>

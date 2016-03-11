@@ -281,6 +281,10 @@ class Vtiger_Util_Helper {
 	 * @return <Array> list of role based picklist values
 	 */
     public static function getRoleBasedPicklistValues($fieldName, $roleId) {
+    		global $adb, $log;
+	global $current_user;
+		$log->debug("Entering into function getRoleBasedPicklistValues($fieldName)");
+
 		$db = PearDatabase::getInstance();
 
         $query = "SELECT $fieldName

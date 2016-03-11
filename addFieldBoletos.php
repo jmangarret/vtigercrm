@@ -91,6 +91,16 @@ $field6->uitype = 7; //text mandatory
 $field6->typeofdata = 'N~M';
 $block->addField($field6);
 
+$field7=new Vtiger_Field();
+$field7->label='Fee Aerolinea';
+$field7->name='fee_airline';
+$field7->table='vtiger_boletos';
+$field7->column='fee_airline';
+$field7->columntype = 'DOUBLE(8,2)';
+$field7->uitype = 7; //money
+$field7->typeofdata = 'N~O'; //optinal
+$block->addField($field7);
+
 $block->save($module);
 $module->initWebservice();
 echo 'Code successfully executed';

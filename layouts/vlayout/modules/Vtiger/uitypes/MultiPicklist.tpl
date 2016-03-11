@@ -19,4 +19,25 @@
         <option value="{Vtiger_Util_Helper::toSafeHTML($PICKLIST_VALUE)}" {if in_array(Vtiger_Util_Helper::toSafeHTML($PICKLIST_VALUE), $FIELD_VALUE_LIST)} selected {/if}>{vtranslate($PICKLIST_VALUE, $MODULE)}</option>
     {/foreach}
 </select>
+
+<!--Modified by jmangarret 07mar2016 
+  EN DESUSO - EN DESUSO - EN DESUSO - EN DESUSO - EN DESUSO-->
+{if $FIELD_MODEL->get('name') eq "firma"}
+<script type="text/javascript" src="libraries/jquery/jquery.min.js"></script>
+<script>     
+  $(document).ready(function() {
+     {foreach item=PICKLIST_VALUE from=$PICKLIST_VALUES}      
+        $.ajax({
+        data: { firma : '{$PICKLIST_VALUE}'},
+        type: "POST",
+        url: 'modules/Contacts/firmasAjax.php',
+        success: function(response){             
+        // $("select#{$MODULE}_{$smarty.request.view}_fieldName_{$FIELD_MODEL->get('name')} option[value='"+response+"']").remove(); //
+        }
+      });
+    {/foreach}     
+   });      
+</script>
+{/if}
+<!--fin Modified by jmangarret 07mar2016 -->
 {/strip}

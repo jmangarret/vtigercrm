@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2016-02-01 12:37:25
+<?php /* Smarty version Smarty-3.1.7, created on 2016-03-09 10:32:55
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20298757745645ebdd7fd2a8-88301050%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'eb5f06dd0e4791cd874da304a615937aa7877d7b' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/ListViewHeader.tpl',
-      1 => 1454346427,
+      1 => 1457535607,
       2 => 'file',
     ),
   ),
@@ -124,4 +124,6 @@ $_smarty_tpl->tpl_vars['FOLDER']->_loop = true;
 " data-value="approve" class="icon-ok alignMiddle approveFilter filterActionImage pull-right"></i><i title="<?php echo vtranslate('LBL_DELETE',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " data-value="delete" class="icon-trash alignMiddle deleteFilter filterActionImage pull-right"></i><i title="<?php echo vtranslate('LBL_EDIT',$_smarty_tpl->tpl_vars['MODULE']->value);?>
 " data-value="edit" class="icon-pencil alignMiddle editFilter filterActionImage pull-right"></i></span><span class="span4 btn-toolbar"><?php echo $_smarty_tpl->getSubTemplate (vtemplate_path('ListViewActions.tpl'), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-</span></div></div><div class="listViewContentDiv" id="listViewContents"><?php }} ?>
+</span></div></div><div class="listViewContentDiv" id="listViewContents"><!-- jmangarret BUSQUEDA POR REPORTE PARA SATELITES feb2016!--><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Localizadores'){?><form action="" name="frmBuscar" method="post" onSubmit="return false"><table class="table showInlineTable"><tr><td class="fieldLabel wide"><span>Satelite: </span><select class="chzn-single"><option>--Seleccione--</option></select><input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision1"></input><span class="add-on"><i class="icon-calendar"></i></span><input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision2"></input><span class="add-on"><i class="icon-calendar"></i></span><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Buscar" class="btn"><strong>Buscar</strong></button></a><span id="searchIcon" class="add-on search-icon"><i class="icon-white icon-search "></i></span></td></tr></table></form><script type="text/javascript">$(document).ready(function() {$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Buscar').click(function(){var ajax_data = {"userid" : $("#current_user_id").val(),"accion" : "listarBusqueda"};jQuery.ajax({data: ajax_data,url: 'modules/Localizadores/ajaxReporteSatelites.php',type: 'get',success: function(response){$("div.listViewEntriesDiv.contents-bottomscroll").html(response);}});});});</script><?php }?><!--fin jmangarret BUSQUEDA POR REPORTE PARA SATELITES feb2016!--><?php }} ?>

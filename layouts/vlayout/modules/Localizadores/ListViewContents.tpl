@@ -86,15 +86,15 @@
 
 					{if $LISTVIEW_HEADER->getFieldName() eq 'localizador'}
 						<script>		
-						var _loc={$LISTVIEW_ENTRY->getId()};									
-							$.ajax({
-							data: { loc : _loc},
-							type: "POST",
-							url: 'modules/Localizadores/ajax.php',
-							success: function(response){														
-								$("a.boletos{$LISTVIEW_ENTRY->getId()}").attr("title", response);
-								}
-							});
+							var _loc={$LISTVIEW_ENTRY->getId()};									
+								$.ajax({
+								data: { loc : _loc},
+								type: "POST",
+								url: 'modules/Localizadores/ajax.php',
+								success: function(response){														
+									$("a.boletos{$LISTVIEW_ENTRY->getId()}").attr("title", response);
+									}
+								});
 						
 						</script>
 						<a href="{$LISTVIEW_ENTRY->getDetailViewUrl()}" class="boletos{$LISTVIEW_ENTRY->getId()}">{$LISTVIEW_ENTRY->get($LISTVIEW_HEADERNAME)}</a>

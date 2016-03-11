@@ -137,6 +137,7 @@
 
 
 						<!-- jmangarret dic2015 - Boton anular boleto!-->	
+						{if $MODULE eq 'Boletos'}
 						<a><i title="Anular Boleto {$LISTVIEW_ENTRY->getId()}" class="alignMiddle">
 							  <input type="image" id="anularBoleto{$LISTVIEW_ENTRY->getId()}" src="themes/images/no.gif">
 						</i></a>
@@ -161,6 +162,7 @@
 					        });    
 					    });
 						</script>
+						{/if}
 						<!-- Fin !-->					
 
 					</span>

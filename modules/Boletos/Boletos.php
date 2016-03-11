@@ -36,14 +36,15 @@ class Boletos extends Vtiger_CRMEntity {
 	 * Mandatory for Listing (Related listview)
 	 */
 	var $list_fields = array (				
+		'LBL_LOCALIZADOR' => array('boletos', 'localizadorid'),		
 		'LBL_PASS' => array('boletos', 'passenger'),		
 		'LBL_FECHA' => array('boletos', 'fecha_emision'),		
 		'LBL_MONTOBASE' => array('boletos', 'monto_base'),
 		'LBL_FEE' => array('boletos', 'fee'),		
 		'LBL_AMOUNT' => array('boletos', 'amount'),		
 		'LBL_TOTAL' => array('boletos', 'totalboletos'),		
-		'LBL_CURRENCY' => array('boletos', 'currency'),
-		'LBL_LOCALIZADOR' => array('boletos', 'localizadorid'),		
+		'LBL_CURRENCY' => array('boletos', 'currency'),		
+		'LBL_BOLETO1' => array('boletos', 'boleto1'),		
 
 );
 	var $list_fields_name = array (				
@@ -55,6 +56,7 @@ class Boletos extends Vtiger_CRMEntity {
 		'LBL_TOTAL' => 'totalboletos',		
 		'LBL_CURRENCY' => 'currency',		
 		'LBL_LOCALIZADOR' => 'localizadorid',		
+		'LBL_BOLETO1' => 'boleto1',		
 );
 
 	// Make the field link to detail view

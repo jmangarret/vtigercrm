@@ -619,9 +619,6 @@ jQuery.Class("Vtiger_Edit_Js",{
 				});
 			});	
 		}		
-		//end
-
-
-		
+		//end		
 	}
 });

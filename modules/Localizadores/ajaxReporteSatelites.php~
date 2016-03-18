@@ -1,0 +1,124 @@
+<?php 
+include("../../config.inc.php");
+$user=$dbconfig['db_username'];
+$pass=$dbconfig['db_password'];
+$bd=$dbconfig['db_name'];
+mysql_connect("localhost",$user,$pass);
+mysql_select_db($bd);
+
+//SELECT SATELITE
+if ($_REQUEST["accion"]=="select_satelite"){
+	$query = "SELECT accountname FROM `vtiger_account` WHERE `account_type` LIKE 'Satelite' ";
+	if($filtro = mysql_query($query))
+		{
+		    if (mysql_num_rows($filtro) > 0)
+		    {
+		        while ($row = mysql_fetch_array($filtro)) 
+		        {	
+		        	echo"<option>".$row["accountname"]."</option>";
+		        }
+		    }
+		}
+}
+//SELECT GDS
+if ($_REQUEST["accion"]=="select_gds"){
+	$query = "SELECT gds FROM vtiger_gds";
+	if($filtro = mysql_query($query))
+		{
+		    if (mysql_num_rows($filtro) > 0)
+		    {
+		        while ($row = mysql_fetch_array($filtro)) 
+		        {	
+		        	echo"<option>".$row["gds"]."</option>";
+		        }
+		    }
+		}
+
+}
+
+///RESPONSE LISTAR RESULTADOS DE LA BUSQUEDA
+if ($_REQUEST["accion"]=="listarBusqueda"){
+
+
+$query="SELECT loc.localizadoresid,loc.localizador, con.firstname, con.lastname, loc.paymentmethod,
+loc.procesado, loc.gds, loc.totalloc, bol.fecha_emision
+FROM vtiger_account AS acc 
+INNER JOIN vtiger_contactdetails AS con ON acc.accountid=con.accountid 
+INNER JOIN vtiger_localizadores AS loc ON loc.contactoid=con.contactid 
+INNER JOIN vtiger_boletos AS bol ON bol.localizadorid=loc.localizadoresid
+WHERE acc.accountname='".$_REQUEST["nombre"]."' AND procesado=".$_REQUEST['proc'];
+if ($_REQUEST["gds"])
+$query.=" AND gds= '".$_REQUEST["gds"]."' ";
+if ($_REQUEST["fecha_desde"] && $_REQUEST["fecha_hasta"])
+$query.="  AND bol.fecha_emision BETWEEN '".$_REQUEST["fecha_desde"]."' AND '".$_REQUEST["fecha_hasta"]."'";
+
+?>
+<div class="bottomscroll-div">
+		<input type="hidden" value="" id="orderBy">
+		<input type="hidden" value="" id="sortOrder">
+		<span class="listViewLoadingImageBlock hide modal noprint" id="loadingListViewModal">
+			<img class="listViewLoadingImage" src="layouts/vlayout/skins/softed/images/loading.gif" alt="no-image" title="Cargando..."/>
+			<p class="listViewLoadingMsg">Cargando, por favor espera.........</p>
+		</span>
+
+	<table class="table table-bordered listViewEntriesTable">
+		<thead>
+		<tr class="listViewHeaders">
+			<th width="5%" class="wide">
+			<input type="checkbox" id="listViewEntriesMainCheckBox" /></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="localizador">Localizador&nbsp;&nbsp;</a></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="localizador">Fecha de Emisión&nbsp;&nbsp;</a></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="contactoid">Contacto&nbsp;&nbsp;</a></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="paymentmethod">Forma de Pago&nbsp;&nbsp;</a>
+			</th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="procesado">Procesado&nbsp;&nbsp;</a></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="gds">Sistema GDS&nbsp;&nbsp;</a></th>
+			<th nowrap  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="totalloc">Total LOC&nbsp;&nbsp;</a></th>
+			<th nowrap  colspan="2"  class="wide"><a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="ASC" data-columnname="registrodeventasid">Registro de Venta&nbsp;&nbsp;</a></th>
+		</tr>
+	</thead>
+<?php
+
+if($filtro = mysql_query($query))
+		{
+		    if (mysql_num_rows($filtro) > 0)
+		    {
+		        while ($row = mysql_fetch_array($filtro)) 
+		        {	
+?>
+	<tr class="listViewEntries" data-id='<?=$row["localizadoresid"]?>' data-recordUrl='index.php?module=Localizadores&view=Detail&record=<?=$row["localizadoresid"]?>' id="Localizadores_listView_row_1">
+		<td  width="5%" class="wide"><input type="checkbox" value="<?=$row["localizadoresid"]?>" class="listViewEntriesCheckBox"/></td>
+		<td class="listViewEntryValue wide" data-field-type="string" data-field-name="localizador" nowrap><?=$row["localizador"]?></td>
+		<td class="listViewEntryValue wide" data-field-type="string" data-field-name="fechaemision" nowrap><?=$row["fecha_emision"]?></td>
+		<td class="listViewEntryValue wide" data-field-type="reference" data-field-name="contactoid" nowrap>
+			<a href='?module=Contacts&view=Detail&record=12672' title='Contactos'><?=$row["firstname"]." ".$row["lastname"]?></a></td>
+		<td class="listViewEntryValue wide" data-field-type="picklist" data-field-name="paymentmethod" nowrap><?=$row["paymentmethod"]?></td>
+		<td class="listViewEntryValue wide" data-field-type="boolean" data-field-name="procesado" nowrap><?=($row["procesado"] == "0") ?  "No" : "Si"?></td>
+		<td class="listViewEntryValue wide" data-field-type="picklist" data-field-name="gds" nowrap><?=$row["gds"]?></td>
+		<td class="listViewEntryValue wide" data-field-type="double" data-field-name="totalloc" nowrap><span align='right'><?=$row["totalloc"]?></div></td>
+		<td class="listViewEntryValue wide" data-field-type="reference" data-field-name="registrodeventasid" nowrap>
+			<a href='?module=RegistroDeVentas&view=Detail&record=12730' title='Registro De Ventas'>VEN02712</a></td>
+		<td nowrap class="wide">
+			<div class="actions pull-right"><span class="actionImages">
+			<a href="index.php?module=Localizadores&view=Detail&record=<?=$row["localizadoresid"]?>&mode=showDetailViewByMode&requestMode=full">
+				<i title="Complete Details" class="icon-th-list alignMiddle"></i></a>&nbsp;
+			<a href='index.php?module=Localizadores&view=Edit&record=<?=$row["localizadoresid"]?>'>
+				<i title="Editar" class="icon-pencil alignMiddle"></i></a>&nbsp;
+				<a class="deleteRecordButton"><i title="Eliminar" class="icon-trash alignMiddle"></i></a></span>
+			</div>
+		</td>
+	</tr>
+<?php
+		        }
+		    }
+		}else{
+			echo "Error en la consulta SQL: ".mysql_error();
+		}
+?>
+	</table>	
+</div>
+<?php 	
+}
+///FIN RESPONSE LISTAR RESULTADOS DE LA BUSQUEDA
+?>
+		

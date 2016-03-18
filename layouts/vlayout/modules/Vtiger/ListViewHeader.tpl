@@ -174,6 +174,7 @@
 			</span>
 		</div>
 		</div>
+
 	<div class="listViewContentDiv" id="listViewContents">
 
 	<!-- jmangarret BUSQUEDA POR REPORTE PARA SATELITES feb2016!-->				   
@@ -181,20 +182,38 @@
 		<form action="" name="frmBuscar" method="post" onSubmit="return false">
 			<table class="table showInlineTable">
 				<tr>
-					<td class="fieldLabel wide">							
-						<span>Satelite: </span>						
-						<select class="chzn-single">
-							<option>--Seleccione--</option>
-						</select>		
+					<td class="fieldLabel wide">
+						<span> Localizador: </span><br>
+						<input type="text" name="text-localizador" id="text-localizador">
+						</td><td class="fieldLabel wide">
+						<span> Nº de Boleto: </span><br>
+						<input type="text" name="text-boleto" id="text-boleto">
+						</td><td class="fieldLabel wide">
+						<span> Estatus: </span><br>
+						<select class="option-estatus" id="option-estatus">
+							<option value="">--Seleccione--</option>
+						</select></td><td class="fieldLabel wide">
+						<span> Satelite: </span><br>
+						<select class="chzn-single" id="chzn-single">
+							<option value="">--Seleccione--</option>
+						</select></td><td class="fieldLabel wide">
+						<span> Desde: </span><br>
+						<input type="date" class="dateField" value="" data-date-format="dd-mm-yyyy" name="fechaemision1" id="fechaemision1"></td><td class="fieldLabel wide">
+						<!--<span class="add-on">
+						    <i class="icon-calendar"></i>
+						</span>-->
+						<span> Hasta: </span><br>
+						<input type="date" class="dateField" value="" data-date-format="dd-mm-yyyy" name="fechaemision2" id="fechaemision2"></td></tr><tr><td class="fieldLabel wide">
+						<!--<span class="add-on">
+						    <i class="icon-calendar"></i>
+						</span>-->
 
-						<input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision1"></input>
-						<span class="add-on">
-						    <i class="icon-calendar"></i>
-						</span>
-						<input class="dateField" type="text" value="" data-date-format="dd-mm-yyyy" name="fechaemision2"></input>
-						<span class="add-on">
-						    <i class="icon-calendar"></i>
-						</span>
+						<span> GDS: </span><br>
+						<select class="gds-select" id="gds-select">
+							<option value="">--Seleccione--</option>
+						</select></td><td class="fieldLabel wide">
+						<span> Procesados: </span>
+						<input type="checkbox" name="checkbox-procesado" id="checkbox-procesado"> </td><td class="fieldLabel wide">
 
 						<a href="javascript:void(0);">
 						<button id="{$MODULE}_listView_basicAction_Buscar" class="btn">								
@@ -208,11 +227,56 @@
 		</form>	
 		<script type="text/javascript">										 
 		 $(document).ready(function() {	
+		 		var ajax_data1 ={
+		 			"accion": "select_satelite"
+		 		};
+		 		jQuery.ajax({
+		 			data: ajax_data1,					
+					url: 'modules/Localizadores/ajaxReporteSatelites.php',
+					type: 'get',
+					success: function(responses){								
+						$("#chzn-single").append(responses);
+					}
+				});	
+
+				var ajax_data2 ={
+					"accion" : "select_gds"
+				};
+		 		jQuery.ajax({
+		 			data: ajax_data2,	
+					url: 'modules/Localizadores/ajaxReporteSatelites.php',
+					type: 'get',
+					success: function(responses){								
+						$("#gds-select").append(responses);
+					}
+				});	
+				var ajax_data3={
+					"accion" : "select_status"
+				};
+				jQuery.ajax({
+					data: ajax_data3,
+					url: 'modules/Localizadores/ajaxReporteSatelites.php',
+					type: 'get',
+					success: function(responses){								
+						$("#option-estatus").append(responses);
+					}
+				});
+
 	 		$('#{$MODULE}_listView_basicAction_Buscar').click(function(){											        
 	            var ajax_data = {
-	            "userid" : $("#current_user_id").val(),						
-				"accion" : "listarBusqueda"				
-				};		
+	            "userid"      : $("#current_user_id").val(),						
+				"accion"      : "listarBusqueda",
+				"satelite"    : $("#chzn-single").val(),
+				"gds"  	 	  : $("#gds-select").val(),
+				"proc"	  	  : $('#checkbox-procesado').is(':checked'),
+				"fecha_desde" : $("#fechaemision1").val(),
+				"fecha_hasta" : $("#fechaemision2").val(),
+				"localizador" : $("#text-localizador").val(),
+				"boleto"	  : $("#text-boleto").val(),
+				"estatus"	  : $("#option-estatus").val()
+
+
+				};	
 				jQuery.ajax({
 					data: ajax_data,
 					url: 'modules/Localizadores/ajaxReporteSatelites.php',

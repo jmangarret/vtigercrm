@@ -8,10 +8,15 @@ mysql_select_db($bd);
 $id= $_GET["id"];
 $userid= $_GET["userid"];
 $accion= $_GET["accion"];
-
+$sin_contactos=0;
+$cont=0;
 if ($accion=="procesarLocalizadores"){		
 	if (isset($id))
-	foreach ($id as $idLoc) {
+	foreach ($id as $idLoc) {		
+
+		$resultado = mysql_query("SELECT registrodeventasid FROM vtiger_localizadores WHERE localizadoresid = ".$idLoc);
+		$registro = mysql_fetch_assoc($resultado);
+		if (!isset($registro["registrodeventasid"])){
 		/// CREACION DEL REGISTO DE VENTAS ///
 		$sqlIdCrm=mysql_query("CALL getCrmId();");
 		$sqlIdCrm=mysql_query("SELECT @idcrm;");
@@ -38,7 +43,13 @@ if ($accion=="procesarLocalizadores"){
 		$sqlContacto.="WHERE a.account_type='Satelite' AND localizadoresid=".$idLoc;	
 		$qryContacto=mysql_query($sqlContacto);
 		$resContacto=mysql_fetch_row($qryContacto);		
-		$contactid = (isset($resContacto[0]) ? $resContacto[0] : '');
+		$contactid = ($resContacto[0]>0 ? $resContacto[0] : 0);
+
+		if ($contactid==0) {
+			$sin_contactos++;
+			continue;
+		}
+
 
 		//Creamos registro de venta
 		$sqlVenta ="insert into vtiger_registrodeventas(registrodeventasid,registrodeventasname,registrodeventastype,fecha,contacto) ";
@@ -58,7 +69,7 @@ if ($accion=="procesarLocalizadores"){
 		$qryUpdLoc=mysql_query("UPDATE vtiger_localizadores SET procesado=1 WHERE localizadoresid=".$idLoc);			
 		$update_loc=mysql_affected_rows();
 		if ($insert_venta>0 && $update_loc>0){
-			//Actualizamos venta asociada en Localizador					
+			//Actualizamos venta asociada en Localizador
 			$qryVtaLoc=mysql_query("UPDATE vtiger_localizadores SET registrodeventasid=$crmId WHERE localizadoresid=".$idLoc);
 			//Insertamos relacion entre modulos vtiger
 			$qryInsertRel=mysql_query("INSERT INTO vtiger_crmentityrel values($crmId,'RegistroDeVentas',$idLoc,'Localizadores');");
@@ -71,10 +82,17 @@ if ($accion=="procesarLocalizadores"){
 			$cont++;						
 		}
 	}
-	if ($cont>0){
+	}
+	if (($cont>0) && ($sin_contactos==0)){//se procesaron todos
 		$link= "<a href='index.php?module=Localizadores&view=List'>Actualizar Lista</a>";		
 		echo "Se han procesado TODOS LOS BOLETOS asociados de los LOCALIZADORES seleccionados. $link";
 	}
+		if ($cont>0 && $sin_contactos>0){	//Mensaje a medias, exitos y fallos
+		$link= "<a href='index.php?module=Localizadores&view=List'>Actualizar Lista</a>";
+		echo "Hubo un total de ".$sin_contactos." boleto/s no se procesaro. No hay Contacto asociado.";
+	}
+		if ($cont==0 && $sin_contactos>0) { //Fallaron todos
+		echo "No se procesó ningún localizador por falta de contactos.";
+	}
 }
-
 ?>

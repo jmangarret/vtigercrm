@@ -89,7 +89,7 @@ if ($accion=="procesarLocalizadores"){
 	}
 		if ($cont>0 && $sin_contactos>0){	//Mensaje a medias, exitos y fallos
 		$link= "<a href='index.php?module=Localizadores&view=List'>Actualizar Lista</a>";
-		echo "Hubo un total de ".$sin_contactos." boleto/s no se procesaro. No hay Contacto asociado.";
+		echo "Hubo un total de ".$sin_contactos." boleto(s) que no se procesaron. No hay Contacto asociado.";
 	}
 		if ($cont==0 && $sin_contactos>0) { //Fallaron todos
 		echo "No se procesó ningún localizador por falta de contactos.";

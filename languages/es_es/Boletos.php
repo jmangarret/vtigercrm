@@ -28,7 +28,7 @@ $languageStrings = array(
 	'LBL_BOLETO7' => 'Boleto 7',
 	'LBL_FEE' => 'Fee',
 	'LBL_BOLETO8' => 'Boleto 8',
-	'LBL_AMOUNT' => 'Monto P/PAX',
+	'LBL_AMOUNT' => 'Tarifa',
 	'LBL_TOTALBOLETOS' => 'Total Boletos',
 	'LBL_BOLETO6' => 'Boleto 6',
 

@@ -9,18 +9,10 @@
  ************************************************************************************/
 
 $languageStrings = array(
-	'Terminales' => 'Firmas',
-	'SINGLE_Terminales' => 'Firma',
-	'Información General' => '',
-	'Información del Sistema' => '',
-	'LBL_FIRMA' => 'Firma',
-	'LBL_GDS' => 'GDS',
-	'LBL_ATID' => 'ATID',
-	'LBL_EMISION' => 'Emisión',
-	'LBL_OFICINA' => 'Oficina',
-	'LBL_OBSERVACION' => 'Observación',
-	'LBL_CID' => 'CID',
-
+	
+	'SINGLE_Tarifas' => 'Tarifas',
+	'LBL_TARIFAS_INFORMATION' => 'Información General Tarifas',
+	
 );
 
 ?>

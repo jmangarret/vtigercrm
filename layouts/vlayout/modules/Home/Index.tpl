@@ -1,5 +1,5 @@
 {strip}
-<div class="mainContainer container-fluid">
+<div class="mainContainer container-fluid">HOLAAAAAA
 	<div class="hero-unit">
 		<div class="row-fluid">
 			<div class="span12">

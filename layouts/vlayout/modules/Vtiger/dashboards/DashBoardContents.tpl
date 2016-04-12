@@ -11,6 +11,10 @@
 -->*}
 {strip}
 
+<div align="center">	
+	<h3><a href="http://humbermarccs.dyndns.tv:8080/vhosts/vtigercrm/">Link Pruebas Nuevo CRM</a></h3>
+</div>
+
 <div class="gridster span" style="width: 98%;">
 	<ul>
 	{assign var=COLUMNS value=2}

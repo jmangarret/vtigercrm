@@ -20,6 +20,7 @@ $fieldInstance->column = 'firmas_satelite'; //Must be lower case
 $fieldInstance->label = 'Firmas Satelite'; //Upper case preceeded by LBL_
 $fieldInstance->columntype = 'VARCHAR(100)'; //
 $fieldInstance->uitype = 33; //textCampo mandatory
+$fieldInstance->displaytype = 2; //readonly
 $fieldInstance->typeofdata = 'V~O'; //V=Varchar?, M=Mandatory, O=Optional
 $block->addField($fieldInstance);
 

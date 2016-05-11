@@ -66,7 +66,7 @@ $field4->label='Itinerario';
 $field4->name='itinerario';
 $field4->table='vtiger_boletos';
 $field4->column='itinerario';
-$field4->columntype = 'VARCHAR(250)';
+$field4->columntype = 'VARCHAR(50)';
 $field4->uitype = 2; //text mandatory
 $field4->typeofdata = 'V~M';
 $block->addField($field4);

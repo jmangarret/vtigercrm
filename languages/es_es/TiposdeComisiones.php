@@ -11,8 +11,8 @@
 $languageStrings = array(
 	'TiposdeComisiones' => 'Tipos de Comisiones',
 	'SINGLE_TiposdeComisiones' => 'Tipo de Comision',
-	'LBL_BLOCK_GENERAL_INFORMATION' => '',
-	'LBL_BLOCK_SYSTEM_INFORMATION' => '',
+	'LBL_BLOCK_GENERAL_INFORMATION' => 'Información General',
+	'LBL_BLOCK_SYSTEM_INFORMATION' => 'Información del Sistema',
 	'LBL_GDS' => 'Sistema GDS',
 	'LBL_CODIGO' => 'Código',
 	'LBL_NOMBRE' => 'Nombre de Comisión',

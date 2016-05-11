@@ -25,19 +25,12 @@
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <p>
-                     <a href="rptVentasSoto.php" target="_blank">Listado Ventas SOTO 2015. </a>
-                 </p>             
-                </div>
-
-                <div class="panel-body">
-                    <p>
-                     <a href="rptFirmasSat.php" target="_blank">Listado de Firmas Satelites. </a>
-                 </p>             
-                </div>
-                <div class="panel-body">
-                    <p>
-			         <a href="rptComisionesSat.php" target="_blank">Listado de Tipos de Comisiones Satelites. </a>
-			     </p>			  
+			<a href="rptVentasSoto.php" target="_blank">Listado Ventas SOTO 2015. </a>
+			</p>
+			  
+              <p>
+            <a href="rptVentasSatelites.php" target="_blank">Listado osTickets Satelites. </a>
+            </p>
                 </div>
             </div>
         </div>

@@ -47,6 +47,9 @@ class Vtiger_Menu {
 		$result = $adb->pquery("SELECT MAX(sequence) AS max_seq FROM vtiger_parenttabrel WHERE parenttabid=?", 
 			Array($this->id));
 		$maxseq = $adb->query_result($result, 0, 'max_seq');
+		if (is_null($maxseq))
+			return 1;
+		else
 		return ++$maxseq;
 	}
 
@@ -66,7 +69,24 @@ class Vtiger_Menu {
 		}
 		self::syncfile();
 	}
+
+	//Inicio funcion para agregar un nuevo parent tab e instanciar modulos en el nuevo parent tab
+
+	function updateMenu($moduleInstance) {
+		
+			global $adb;
+			$relsequence = $this->__getNextRelSequence();
+			$adb->pquery("UPDATE vtiger_parenttabrel SET parenttabid = ?,sequence= ? WHERE tabid = ?",
+					Array($this->id,  $relsequence, $moduleInstance->id));
+			$adb->pquery("UPDATE vtiger_tab SET parent = ? WHERE tabid = ?",
+					Array($this->label, $moduleInstance->id));
+			self::log("Added to menu $this->label ... DONE");
+		 
+		self::syncfile();
+	}
 	
+	//Fin funcion para agregar un nuevo parent tab e instanciar modulos en el nuevo parent tab
+
 	/**
 	 * Remove module from this menu instance.
 	 * @param Vtiger_Module Instance of the module

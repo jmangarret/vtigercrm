@@ -11,8 +11,8 @@
 $languageStrings = array(
 	'ComisionSatelites' => 'Comisiones Satelites',
 	'SINGLE_ComisionSatelites' => 'Comision Satelite',
-	'LBL_BLOCK_GENERAL_INFORMATION' => '',
-	'LBL_BLOCK_SYSTEM_INFORMATION' => '',
+	'LBL_BLOCK_GENERAL_INFORMATION' => 'Información General',
+	'LBL_BLOCK_SYSTEM_INFORMATION' => 'Información del Sistema',
 	'LBL_ACCOUNTID' => 'Cuenta Satelite',
 	'LBL_ACTIVA' => 'Activa',
 	'LBL_TIPODECOMISIONID' => 'Tipo de Comisión',

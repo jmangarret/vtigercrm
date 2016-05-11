@@ -11,8 +11,8 @@
 $languageStrings = array(
 	'Localizadores' => 'Localizadores',
 	'SINGLE_Localizadores' => 'Localizador',
-	'LBL_BLOCK_GENERAL_INFORMATION' => '',
-	'LBL_BLOCK_SYSTEM_INFORMATION' => '',
+	'LBL_BLOCK_GENERAL_INFORMATION' => 'Informacion General',
+	'LBL_BLOCK_SYSTEM_INFORMATION' => 'Informacion del Sistema',
 	'LBL_REGISTRODEVENTASID' => 'Registro de Venta',
 	'LBL_LOCALIZADOR' => 'Localizador',
 	'LBL_AIRLINE' => 'Aerolinea',

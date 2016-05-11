@@ -41,6 +41,11 @@ if ($accion=="procesarLocalizadores"){
 		$sqlContacto.="INNER JOIN vtiger_contactdetails 	AS c ON a.accountid=c.accountid ";
 		$sqlContacto.="INNER JOIN vtiger_localizadores 	AS l ON l.contactoid=c.contactid ";		
 		$sqlContacto.="WHERE a.account_type='Satelite' AND localizadoresid=".$idLoc;	
+		///SQL PARA CONTACTO EN GENERAL SIN TOMAR EN CUENTA QUE SEA SATELITE
+		$sqlContacto ="SELECT c.contactid FROM vtiger_contactdetails AS c ";		
+		$sqlContacto.="INNER JOIN vtiger_localizadores 	AS l ON l.contactoid=c.contactid ";		
+		$sqlContacto.="WHERE localizadoresid=".$idLoc;	
+
 		$qryContacto=mysql_query($sqlContacto);
 		$resContacto=mysql_fetch_row($qryContacto);		
 		$contactid = ($resContacto[0]>0 ? $resContacto[0] : 0);
@@ -74,11 +79,13 @@ if ($accion=="procesarLocalizadores"){
 			//Insertamos relacion entre modulos vtiger
 			$qryInsertRel=mysql_query("INSERT INTO vtiger_crmentityrel values($crmId,'RegistroDeVentas',$idLoc,'Localizadores');");
 			//Buscamos boletos del localizador para actualizar status.
+			/*
 			$qryBoletos=mysql_query("SELECT boletosid FROM vtiger_boletos WHERE localizadorid=".$idLoc);			
 			while ($rowBoletos=mysql_fetch_row($qryBoletos)){
 				$idBoleto=$rowBoletos[0];	
 				$sql=mysql_query("UPDATE vtiger_boletos SET status='Procesado' WHERE boletosid=".$idBoleto);		
 			}
+			*/
 			$cont++;						
 		}
 	}

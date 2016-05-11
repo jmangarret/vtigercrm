@@ -28,9 +28,10 @@ $fieldInstance2->name = 'firma'; //Usually matches column name
 $fieldInstance2->table = 'vtiger_users';
 $fieldInstance2->column = 'agenteid'; //Must be lower case
 $fieldInstance2->label = 'Agente ID'; //Upper case preceeded by LBL_
-$fieldInstance2->columntype = 'VARCHAR(100)'; //
+$fieldInstance2->columntype = 'VARCHAR(200)'; //
 $fieldInstance2->uitype = 33; //textCampo mandatory
-$fieldInstance2->typeofdata = 'V~M'; //V=Varchar?, M=Mandatory, O=Optional
+$fieldInstance2->displaytype = 2; //readonly
+$fieldInstance2->typeofdata = 'V~O'; //V=Varchar?, M=Mandatory, O=Optional
 $block->addField($fieldInstance2);
 
 $block->save($users);

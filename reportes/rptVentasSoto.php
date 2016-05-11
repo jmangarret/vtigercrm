@@ -3,6 +3,9 @@
 <head>
 <title>Ventas Soto 2015</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<?php
+include("librerias.php");
+?>
 </head>
 
 <body>

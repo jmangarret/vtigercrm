@@ -12,7 +12,7 @@
 {strip}
 
 <div align="center">	
-	<h3><a href="http://humbermarccs.dyndns.tv:8080/vhosts/vtigercrm/">Link Pruebas Nuevo CRM</a></h3>
+	<h3><a href=" http://crmtest.tuagencia24.com/reportes/rptVentasSatelites.php">Tickets Satelites (Administración)</a></h3>
 </div>
 
 <div class="gridster span" style="width: 98%;">

@@ -39,8 +39,7 @@ class Localizadores extends Vtiger_CRMEntity {
 		'LBL_REGISTRODEVENTASID' => array('localizadores', 'registrodeventasid'),
 		'LBL_LOCALIZADOR' => array('localizadores', 'localizador'),
 		'LBL_CONTACTOID' => array('localizadores', 'contactoid'),
-		'LBL_GDS' => array('localizadores', 'gds'),
-		'LBL_STATUS' => array('localizadores', 'status'),
+		'LBL_GDS' => array('localizadores', 'gds'),		
 		'LBL_PROCESADO' => array('localizadores', 'procesado'),
 
 );
@@ -48,8 +47,7 @@ class Localizadores extends Vtiger_CRMEntity {
 		'LBL_REGISTRODEVENTASID' => 'registrodeventasid',
 		'LBL_LOCALIZADOR' => 'localizador',
 		'LBL_CONTACTOID' => 'contactoid',
-		'LBL_GDS' => 'gds',
-		'LBL_STATUS' => 'status',
+		'LBL_GDS' => 'gds',		
 		'LBL_PROCESADO' => 'procesado',
 
 );

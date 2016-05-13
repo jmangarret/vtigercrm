@@ -25,6 +25,43 @@
 					<div class="span7">
 						<div class="pull-right detailViewButtoncontainer">
 							<div class="btn-toolbar">
+							<!-- jmangarret BOTON DE ACCION PROCESAR EN VISTA DETALLE DEL LOCALIZADOR, may2016 !-->				   
+							{if $MODULE eq 'Localizadores'}
+							<span class="btn-group">
+									<a href="javascript:void(0);">
+									<button id="{$MODULE}_listView_basicAction_Process" class="btn addButton">
+										<i class="icon-plus icon-white"></i>&nbsp;
+										<strong>Procesar</strong> 
+									</button>
+									</a>
+							</span>
+							<script type="text/javascript">										 
+							 $(document).ready(function() {	
+						 		$('#{$MODULE}_listView_basicAction_Process').click(function(){
+						 			alert($("#recordId").val());
+							        var ids1 = new Array();						 
+							        ids1.push($("#recordId").val());						            
+							        
+						            var ajax_data1 = {
+						            "userid" : $("#current_user_id").val(),						
+									"accion" : "procesarLocalizadores",					
+									"id" : ids1					
+									};		
+									jQuery.ajax({
+										data: ajax_data1,
+										url: 'modules/Localizadores/ajaxProcesarList_Loc.php',
+										type: 'get',
+										success: function(response){														
+											if (response!='')
+											bootbox.alert(response);
+										}
+									});
+							    });	
+							});						
+							</script>
+							{/if}&nbsp;
+							<!-- jmangarret BOTON DE ACCION PROCESAR EN VISTA DETALLE DEL LOCALIZADOR, may2016 !-->				   
+
 							{foreach item=DETAIL_VIEW_BASIC_LINK from=$DETAILVIEW_LINKS['DETAILVIEWBASIC']}
 							<span class="btn-group">
 								<button class="btn" id="{$MODULE_NAME}_detailView_basicAction_{Vtiger_Util_Helper::replaceSpaceWithUnderScores($DETAIL_VIEW_BASIC_LINK->getLabel())}"

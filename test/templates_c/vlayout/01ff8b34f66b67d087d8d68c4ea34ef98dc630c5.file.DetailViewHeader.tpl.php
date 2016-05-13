@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.7, created on 2015-11-13 14:22:35
+<?php /* Smarty version Smarty-3.1.7, created on 2016-05-13 11:34:40
          compiled from "/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/DetailViewHeader.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1479000617564631739b00e3-43100657%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '01ff8b34f66b67d087d8d68c4ea34ef98dc630c5' => 
     array (
       0 => '/var/www/vhosts/vtigercrm/includes/runtime/../../layouts/vlayout/modules/Vtiger/DetailViewHeader.tpl',
-      1 => 1423065964,
+      1 => 1463155478,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.7',
+  'unifunc' => 'content_56463173a79af',
   'variables' => 
   array (
     'MODULE_MODEL' => 0,
@@ -30,13 +32,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'NEXT_RECORD_URL' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.7',
-  'unifunc' => 'content_56463173a79af',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_56463173a79af')) {function content_56463173a79af($_smarty_tpl) {?>
 <?php $_smarty_tpl->tpl_vars["MODULE_NAME"] = new Smarty_variable($_smarty_tpl->tpl_vars['MODULE_MODEL']->value->get('name'), null, 0);?><input id="recordId" type="hidden" value="<?php echo $_smarty_tpl->tpl_vars['RECORD']->value->getId();?>
 " /><div class="detailViewContainer"><div class="row-fluid detailViewTitle"><div class="<?php if ($_smarty_tpl->tpl_vars['NO_PAGINATION']->value){?> span12 <?php }else{ ?> span10 <?php }?>"><div class="row-fluid"><div class="span5"><div class="row-fluid"><?php echo $_smarty_tpl->getSubTemplate (vtemplate_path("DetailViewHeaderTitle.tpl",$_smarty_tpl->tpl_vars['MODULE']->value), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
-</div></div><div class="span7"><div class="pull-right detailViewButtoncontainer"><div class="btn-toolbar"><?php  $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK']->_loop = false;
+</div></div><div class="span7"><div class="pull-right detailViewButtoncontainer"><div class="btn-toolbar"><!-- jmangarret BOTON DE ACCION PROCESAR EN VISTA DETALLE DEL LOCALIZADOR, may2016 !--><?php if ($_smarty_tpl->tpl_vars['MODULE']->value=='Localizadores'){?><span class="btn-group"><a href="javascript:void(0);"><button id="<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Process" class="btn addButton"><i class="icon-plus icon-white"></i>&nbsp;<strong>Procesar</strong></button></a></span><script type="text/javascript">$(document).ready(function() {$('#<?php echo $_smarty_tpl->tpl_vars['MODULE']->value;?>
+_listView_basicAction_Process').click(function(){var ids1 = new Array();ids1.push($("#recordId").val());var ajax_data1 = {"userid" : $("#current_user_id").val(),"accion" : "procesarLocalizadores","id" : ids1};jQuery.ajax({data: ajax_data1,url: 'modules/Localizadores/ajaxProcesarList_Loc.php',type: 'get',success: function(response){if (response!='')bootbox.alert(response);}});});});</script><?php }?>&nbsp;<!-- jmangarret BOTON DE ACCION PROCESAR EN VISTA DETALLE DEL LOCALIZADOR, may2016 !--><?php  $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['DETAILVIEW_LINKS']->value['DETAILVIEWBASIC']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK']->key => $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK']->value){
 $_smarty_tpl->tpl_vars['DETAIL_VIEW_BASIC_LINK']->_loop = true;

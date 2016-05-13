@@ -176,12 +176,14 @@ if($filtro = mysql_query($query))
 		<td class="listViewEntryValue wide" data-field-type="reference" data-field-name="registrodeventasid" nowrap>
 			<a href='?module=RegistroDeVentas&view=Detail&record=<?=$row["registrodeventasid"]?>' title='Registro De Ventas'><?=$registro_de_venta["registrodeventasname"]?></a></td>
 		<td nowrap class="wide">
-			<div class="actions pull-right"><span class="actionImages">
+			<div class="actions pull-right">
+			<span class="actionImages">
 			<a href="index.php?module=Localizadores&view=Detail&record=<?=$row["localizadoresid"]?>&mode=showDetailViewByMode&requestMode=full">
 				<i title="Complete Details" class="icon-th-list alignMiddle"></i></a>&nbsp;
 			<a href='index.php?module=Localizadores&view=Edit&record=<?=$row["localizadoresid"]?>'>
-				<i title="Editar" class="icon-pencil alignMiddle"></i></a>&nbsp;
-				<a class="deleteRecordButton"><i title="Eliminar" class="icon-trash alignMiddle"></i></a></span>
+				<i title="Editar" class="icon-pencil alignMiddle"></i>
+			</a>
+			</span>
 			</div>
 		</td>
 	</tr>
